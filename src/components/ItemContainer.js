@@ -1,18 +1,28 @@
 import React from "react";
+import styled from "styled-components";
 import Item from "./Item";
 
 export default function ItemContainer() {
-    return (
-        <section className="item-container">
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    </section>
-    )
+  return (
+    <Section>
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+    </Section>
+  );
 }
+
+// Styling
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
