@@ -1,2 +1,1 @@
-# Spring Group Project 
-## FRONT END REPO
+# Front-end repo for Spring Group Project 
