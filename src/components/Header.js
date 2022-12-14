@@ -21,6 +21,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   background-color: aquamarine;
+  height: 15vh;
 `;
 
 const HeaderOne = styled.h1`
@@ -38,7 +39,7 @@ const Title = styled.div`
 
 const Login = styled.div`
   position: relative;
-  top: 1vw;
+  top: 2vw;
   left: 85vw;
   z-index: 2;
 `;

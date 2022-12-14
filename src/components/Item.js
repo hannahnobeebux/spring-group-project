@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import placeholder from "../images/sunset.png";
+import placeholder from "../images/placeholder-image.png";
 
 export default function Item() {
   return (
     <Section>
-      <h3>Title</h3>
-      <p>Price</p>
+      <SubHeading>Title</SubHeading>
+      <PTag>Price</PTag>
       <Image src={placeholder} />
       <Wishlist>Add to wishlist</Wishlist>
     </Section>
@@ -19,14 +19,22 @@ const Section = styled.section`
   background-color: orange;
   width: 20vw;
   height: 25vw;
-  margin: 1vw;
+  margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
 `;
 
+const SubHeading = styled.h3`
+  margin: 10px;
+`;
+
+const PTag = styled.p`
+  margin-top: 0;
+`;
+
 const Image = styled.img`
   width: 15vw;
-  height: 10vw;
+  height: 15vw;
   align-self: center;
 `;
 
