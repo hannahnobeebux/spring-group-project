@@ -1,31 +1,39 @@
-import React, { useEffect, useState, useParams } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import placeholder from '../images/placeholder-image.png'
+import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
+import Footer from "./Footer";
+
 
 export default function ItemInfo() {
-    
-    useEffect(() => {
-        async function getItem() {
-            try {
-                // getting item with id = 1
-                const response = await fetch("http://localhost:8080/shop/item/:id")
-                const data = await response.json();
+  const [item, setItem] = useState()
+  const [isLoading, setIsLoading] = useState(true);
 
-            } catch (error) {
-           
-            }
-        } getItem()
-    }, [])
+  const {id} = useParams()
+
+    useEffect(() => {
+        async function fetchOneItem() {
+            const data = await fetchGetOneItem(id)
+            setItem(data)
+            setIsLoading(false)
+    }
+    fetchOneItem()
+  }, [id])
+
+  if(!isLoading) {
     return (
-        <section>
-            <SubHeading>Name</SubHeading>
-            <PTag>category</PTag>
-            <Image src= {placeholder} />
-            <PTag>price</PTag>
-            <PTag>quantity</PTag>
-            <PTag>description</PTag>
+      <section>
+            <SubHeading>{item.name}</SubHeading>
+            <PTag>{item.category}</PTag>
+            <Image src= {item.image} />
+            <PTag>{item.price}</PTag>
+            <PTag>{item.quantity}</PTag>
+            <PTag>{item.description}</PTag>
+            <Footer />
+            
         </section>
     )
+  }
 
 }
 

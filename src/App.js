@@ -4,6 +4,7 @@ import ItemContainer from "./components/ItemContainer";
 import Footer from "./components/Footer";
 import { Route, Routes, useParams } from "react-router-dom";
 import ItemInfo from "./components/ItemInfo";
+import AddItem from "./components/AddItem"
 
 
 
@@ -23,7 +24,7 @@ function App() {
 
         <Route path='/' element = {<ItemContainer/>} />
         <Route path='/itemInfo/:id' element = {<ItemInfo />} />
- 
+        <Route path='/addItem' element = {<AddItem/>}/>
        
       </Routes>
       <Footer />

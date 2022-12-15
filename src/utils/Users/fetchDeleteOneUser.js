@@ -1,6 +1,8 @@
-export default async function fetchGetAllUsers() {
+export default async function fetchDeleteOneUser(userId) {
     try {
-      const response = await fetch(`http://localhost:8080/shop/user`);
+      const response = await fetch(`http://localhost:8080/shop/user/${userId}`, {
+        method: "DELETE",
+      });
       const data = await response.json();
       if (response.status === 200) {
       } else {
