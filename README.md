@@ -1,1 +1,3 @@
-# Front-end repo for Spring Group Project 
+# SimpliShop 
+### Multiverse Final Group Project 
+
