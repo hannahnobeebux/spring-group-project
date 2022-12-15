@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import placeholder from "../images/placeholder-image.png";
+// import placeholder from "../images/placeholder-image.png";
+// import fetchGetAllTasks from "../fetchtest";
 
 export default function Item() {
-  return (
-    <Section>
-      <SubHeading>Title</SubHeading>
-      <PTag>Price</PTag>
-      <Image src={placeholder} />
-      <Wishlist>Add to wishlist</Wishlist>
-    </Section>
-  );
+  const [items, setItems] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:8080/shop/item");
+        const data = await response.json();
+        if (response.status === 200) {
+          setItems(data);
+          setIsLoading(false);
+        } else {
+          if (data.errors !== undefined) {
+            alert(data.errors[0].msg);
+            return;
+          }
+          alert(data.message);
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (!isLoading) {
+    console.log(items);
+    return items.map((item) => (
+      <Section>
+        <SubHeading>{item.name}</SubHeading>
+        <PTag>£{item.price.toFixed(2)}</PTag>
+        <Image src={item.image} />
+        <Wishlist>Add to wishlist</Wishlist>
+      </Section>
+    ));
+  }
 }
 
 // Styling

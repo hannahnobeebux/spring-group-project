@@ -6,14 +6,6 @@ export default function ItemContainer() {
   return (
     <Section>
       <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
     </Section>
   );
 }
