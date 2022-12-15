@@ -1,3 +1,5 @@
-# SimpliShop 
-### Multiverse Final Group Project 
+# SimpliShop 🛒
+## Multiverse Final Group Project 
+
+
 
