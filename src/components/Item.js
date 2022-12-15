@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 // import placeholder from "../images/placeholder-image.png";
-// import fetchGetAllTasks from "../fetchtest";
+// import fetchGetAllItems from "../utils/fetchGetAllItems";
 
 export default function Item() {
   const [items, setItems] = useState();
@@ -30,15 +31,17 @@ export default function Item() {
     fetchData();
   }, []);
 
+  // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
   if (!isLoading) {
-    console.log(items);
     return items.map((item) => (
+      <Link to = {`/itemInfo/${item.id}`}>
       <Section>
         <SubHeading>{item.name}</SubHeading>
         <PTag>£{item.price.toFixed(2)}</PTag>
         <Image src={item.image} />
         <Wishlist>Add to wishlist</Wishlist>
       </Section>
+      </Link>
     ));
   }
 }
