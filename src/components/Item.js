@@ -17,6 +17,22 @@ export default function Item() {
     fetchAllItems();
   }, []);
 
+  const WishlistIcon = ({ item }) => {
+    const [lightMode, setLightMode] = useState(false);
+
+    return (
+      <img
+        onClick={() => setLightMode((prevMode) => !prevMode)}
+        src={
+          lightMode
+            ? "https://www.svgrepo.com/show/159717/heart.svg"
+            : "https://www.svgrepo.com/show/25921/heart.svg"
+        }
+        alt="Wishlist button"
+      ></img>
+    );
+  };
+
   // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
   if (!isLoading) {
     return items.map((item) => (
@@ -25,32 +41,43 @@ export default function Item() {
           <SubHeading>
             {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
           </SubHeading>
-          <PTag>£{item.price.toFixed(2)}</PTag>
+
           <Image src={item.image} />
         </Link>
-        <Wishlist>Add to wishlist</Wishlist>
+        <PTag>£{item.price.toFixed(2)}</PTag>
+        <Wishlist id="wishlist">
+          <WishlistIcon item={item} />
+        </Wishlist>
       </Section>
     ));
   }
 }
 
-// Styling
-
 const Section = styled.section`
-  background-color: orange;
+  background-color: white;
+  border-radius: 20px;
   width: 20vw;
   height: 25vw;
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.06);
+  }
 `;
 
 const SubHeading = styled.h3`
-  margin: 10px;
+  font-size: 30px;
+  margin: 30px;
 `;
 
 const PTag = styled.p`
-  margin-top: 0;
+  display: inline-block;
+  margin-left: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  margin-top: 10;
 `;
 
 const Image = styled.img`
@@ -60,8 +87,18 @@ const Image = styled.img`
 `;
 
 const Wishlist = styled.button`
-  margin-top: 1vw;
-  width: fit-content;
-  align-self: center;
+  margin-top: -1.5vw;
+  margin-right: 1.5vw;
+  // width: fit-content;
+  align-self: flex-end;
   justify-self: flex-end;
+  border-style: none;
+  // color: White;
+  // border-radius: 20px;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  // &:hover {
+  //   background-color: #e07426;
+  // }
 `;
