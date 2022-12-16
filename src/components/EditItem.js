@@ -30,7 +30,20 @@ export default function EditItem() {
         <p>{errors.image?.message}</p>
         <Input {...register("description")} placeholder="Description" />
         <p>{errors.description?.message}</p>
-        <Input {...register("category")} placeholder="Category" />
+        <label>Category</label>
+        <br></br>
+        <Select
+          {...register("category", { required: "This is required" })}
+          placeholder="Category"
+        >
+          <option value="Baby">Baby</option>
+          <option value="Books">Books</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home">Home</option>
+          <option value="Toys">Toys</option>
+          <option value="Technology">Technology</option>
+        </Select>
         <p>{errors.category?.message}</p>
         <Input {...register("quantity")} placeholder="Quantity" />
         <p>{errors.quantity?.message}</p>
@@ -55,6 +68,13 @@ const Input = styled.input`
   width: 20vw;
   height: 2vw;
   border-radius: 10px;
+`;
+
+const Select = styled.select`
+  width: 20vw;
+  height: 2vw;
+  border-radius: 10px;
+  margin-top: 1vw;
 `;
 
 const Submit = styled.input`
