@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import fetchAddOneItem from "../utils/Items/fetchAddOneItem";
 
@@ -12,11 +13,13 @@ export default function AddItem() {
       name: "",
     },
   });
+
+  const navigate = useNavigate();
+
   async function onSubmit(data) {
-    console.log(data);
     await fetchAddOneItem(data);
+    navigate("/");
   }
-  console.log(errors);
 
   return (
     <>
@@ -37,10 +40,20 @@ export default function AddItem() {
           placeholder="Description"
         />
         <p>{errors.description?.message}</p>
-        <Input
+        <label>Category</label>
+        <br></br>
+        <Select
           {...register("category", { required: "This is required" })}
           placeholder="Category"
-        />
+        >
+          <option value="Baby">Baby</option>
+          <option value="Books">Books</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home">Home</option>
+          <option value="Toys">Toys</option>
+          <option value="Technology">Technology</option>
+        </Select>
         <p>{errors.category?.message}</p>
         <Input
           {...register("quantity", { required: "This is required" })}
@@ -52,6 +65,7 @@ export default function AddItem() {
           placeholder="Price"
         />
         <p>{errors.price?.message}</p>
+
         <Submit type="submit" />
       </form>
     </>
@@ -71,6 +85,13 @@ const Input = styled.input`
   width: 20vw;
   height: 2vw;
   border-radius: 10px;
+`;
+
+const Select = styled.select`
+  width: 20vw;
+  height: 2vw;
+  border-radius: 10px;
+  margin-top: 1vw;
 `;
 
 const Submit = styled.input`
