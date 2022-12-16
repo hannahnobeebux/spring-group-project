@@ -1,28 +1,26 @@
-export default async function fetchAddOneItem() {
-    try {
-      const response = await fetch(`http://localhost:8080/shop/item`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: name,
-            image: image,
-            description: description,
-            category: category,
-            quantity: quantity,
-            price: price
-        })
-      });
-      const data = await response.json();
-      if (response.status === 200) {
-      } else {
-        if (data.errors !== undefined) {
-          alert(data.errors[0].msg);
-          return;
-        }
-        alert(data.message);
-      }
-    } catch (error) {
-      alert(error.message);
-    }
+export default async function fetchAddOneItem(item) {
+  console.log(item);
+  // try {
+
+  const response = await fetch(`http://localhost:8080/shop/item`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      name: item.name,
+      image: item.image,
+      description: item.description,
+      category: item.category,
+      quantity: item.quantity,
+      price: item.price,
+    }),
+  });
+  if (response.status === 200) {
+    return;
   }
-  
+  // } catch (error) {
+  //   alert(error.message);
+  // }
+}
