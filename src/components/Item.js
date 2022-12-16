@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import placeholder from "../images/placeholder-image.png";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 
 export default function Item() {
@@ -9,25 +8,26 @@ export default function Item() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
     async function fetchAllItems() {
-      const data = await fetchGetAllItems()
-      setItems(data)
-      setIsLoading(false)
+      const data = await fetchGetAllItems();
+      setItems(data);
+      setIsLoading(false);
     }
 
-    fetchAllItems()
+    fetchAllItems();
   }, []);
 
   // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
   if (!isLoading) {
     return items.map((item) => (
       <Section key={item.id}>
-        <Link to = {`/itemInfo/${item.id}`}>
-        <SubHeading>{item.name}</SubHeading>
-        <PTag>£{item.price.toFixed(2)}</PTag>
-        <Image src={item.image} />
-      </Link>
+        <Link to={`/itemInfo/${item.id}`}>
+          <SubHeading>
+            {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+          </SubHeading>
+          <PTag>£{item.price.toFixed(2)}</PTag>
+          <Image src={item.image} />
+        </Link>
         <Wishlist>Add to wishlist</Wishlist>
       </Section>
     ));
@@ -38,7 +38,7 @@ export default function Item() {
 
 const Section = styled.section`
   background-color: orange;
-  width: 20vw;          
+  width: 20vw;
   height: 25vw;
   margin: 2vw 1vw;
   display: flex;
