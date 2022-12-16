@@ -1,6 +1,8 @@
  # SimpliShop 🛒 
 ## Multiverse Final Group Project 
 
+#### This is the **front end repo** --> [Click here for the backend repo](https://github.com/MBailey114/springBackEnd) 
+
 **_PROJECT IDEA_** <br>
 Initial idea: Creating an E-Commerce website 
 
