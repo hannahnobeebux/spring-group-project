@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "../App.css";
+import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 
 export default function NavBar() {
-  return (
-    <Nav>
-      <nav>
-        <ATag href="https://www.google.com/">One</ATag>
-        <ATag href="https://www.google.com/">Two</ATag>
-        <ATag href="https://www.google.com/">Three</ATag>
-        <ATag href="https://www.google.com/">Four</ATag>
-        <ATag href="https://www.google.com/">Five</ATag>
-      </nav>
-    </Nav>
-  );
+  const [categories, setCategories] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const catArray = [];
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const data = await fetchGetAllItems();
+      await data.map((item) => catArray.push(item.category));
+      await setCategories([...new Set(catArray)]);
+      setIsLoading(false);
+    }
+
+    fetchCategories();
+  }, []);
+
+  if (!isLoading) {
+    return (
+      <Nav>
+        <nav>
+          {categories.map((category) => {
+            return (
+              <ATag href={`/${category}`} key={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </ATag>
+            );
+          })}
+        </nav>
+      </Nav>
+    );
+  }
 }
 
 // Styling
