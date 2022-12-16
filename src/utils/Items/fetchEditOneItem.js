@@ -1,28 +1,27 @@
-export default async function fetchEditOneItem(itemId) {
-    try {
-      const response = await fetch(`http://localhost:8080/shop/item${itemId}`, {
+export default async function fetchEditOneItem(item) {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/shop/item${item.itemId}`,
+      {
         method: "PUT",
-        headers: { "Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({
-            name: name,
-            image: image,
-            description: description,
-            category: category,
-            quantity: quantity,
-            price: price
-        })
-      });
-      const data = await response.json();
-      if (response.status === 200) {
-      } else {
-        if (data.errors !== undefined) {
-          alert(data.errors[0].msg);
-          return;
-        }
-        alert(data.message);
+          name: item.name,
+          image: item.image,
+          description: item.description,
+          category: item.category,
+          quantity: item.quantity,
+          price: item.price,
+        }),
       }
-    } catch (error) {
-      alert(error.message);
+    );
+    if (response.status === 200) {
+      return;
     }
+  } catch (error) {
+    alert(error.message);
   }
-  
+}
