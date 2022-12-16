@@ -21,3 +21,8 @@ body {
 .App-link {
   color: #61dafb;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
