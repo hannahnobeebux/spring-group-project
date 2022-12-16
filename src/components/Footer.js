@@ -15,7 +15,7 @@ const StyledFooter = styled.footer`
   text-align: center;
   padding: 10px;
   margin: 0;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100vw;
   font-weight: bold;
