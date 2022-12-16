@@ -32,6 +32,9 @@ export default function NavBar() {
             );
           })}
         </nav>
+        <nav>
+          <ATag href={"/wishlist"}>View wishlist</ATag>
+        </nav>
       </Nav>
     );
   }
@@ -43,6 +46,9 @@ const Nav = styled.div`
   padding: 1vw;
   margin: 0;
   background-color: #61dafb;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const ATag = styled.a`
