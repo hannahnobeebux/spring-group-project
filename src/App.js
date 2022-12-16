@@ -2,30 +2,25 @@ import Header from "./components/Header";
 import NavBar from "./components/Navbar";
 import ItemContainer from "./components/ItemContainer";
 import Footer from "./components/Footer";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ItemInfo from "./components/ItemInfo";
-import AddItem from "./components/AddItem"
-
-
+import AddItem from "./components/AddItem";
+import DeleteItem from "./components/DeleteItem";
+import EditItem from "./components/EditItem";
+import ItemsByCategory from "./components/ItemsByCategory";
 
 function App() {
-  
-  function Items () {
-    const params = useParams();
-    console.log(params);
-
-    return <p>The item id is {params.id}</p>
-}
   return (
     <div className="App">
       <Header />
       <NavBar />
       <Routes>
-
-        <Route path='/' element = {<ItemContainer/>} />
-        <Route path='/itemInfo/:id' element = {<ItemInfo />} />
-        <Route path='/addItem' element = {<AddItem/>}/>
-       
+        <Route path="/" element={<ItemContainer />} />
+        <Route path="/itemInfo/:id" element={<ItemInfo />} />
+        <Route path="/addItem" element={<AddItem />} />
+        <Route path="/deleteItem" element={<DeleteItem />} />
+        <Route path="/editItem" element={<EditItem />} />
+        <Route path="/:category" element={<ItemsByCategory />} />
       </Routes>
       <Footer />
     </div>
