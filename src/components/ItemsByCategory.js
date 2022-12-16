@@ -20,23 +20,33 @@ export default function ItemsByCategory() {
   }, [category]);
 
   if (!isLoading) {
-    console.log(items);
-    return items.map((item) => (
-      <Section key={item.id}>
-        <Link to={`/itemInfo/${item.id}`}>
-          <SubHeading>
-            {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
-          </SubHeading>
-          <PTag>£{item.price.toFixed(2)}</PTag>
-          <Image src={item.image} />
-        </Link>
-        <Wishlist>Add to wishlist</Wishlist>
-      </Section>
-    ));
+    return (
+      <Container>
+        {items.map((item) => (
+          <Section key={item.id}>
+            <Link to={`/itemInfo/${item.id}`}>
+              <SubHeading>
+                {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+              </SubHeading>
+              <PTag>£{item.price.toFixed(2)}</PTag>
+              <Image src={item.image} />
+            </Link>
+            <Wishlist>Add to wishlist</Wishlist>
+          </Section>
+        ))}
+      </Container>
+    );
   }
 }
 
 // Styling
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 const Section = styled.section`
   background-color: orange;
