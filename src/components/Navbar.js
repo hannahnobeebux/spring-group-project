@@ -4,41 +4,54 @@ import "../App.css";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 
 export default function NavBar() {
-  const [categories, setCategories] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [categories, setCategories] = useState();
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const catArray = [];
+  const catArray = [
+    "Baby",
+    "Books",
+    "Entertainment",
+    "Fashion",
+    "Home",
+    "Toys",
+    "Technology",
+  ];
 
-  useEffect(() => {
-    async function fetchCategories() {
-      const data = await fetchGetAllItems();
-      await data.map((item) => catArray.push(item.category));
-      await setCategories([...new Set(catArray)]);
-      setIsLoading(false);
-    }
+  // useEffect(() => {
+  //   async function fetchCategories() {
+  //     const data = await fetchGetAllItems();
+  //     await data.map((item) => catArray.push(item.category));
+  //     await setCategories([...new Set(catArray)]);
+  //     setIsLoading(false);
+  //   }
 
-    fetchCategories();
-  }, []);
+  //   fetchCategories();
+  // }, []);
 
-  if (!isLoading) {
-    return (
-      <Nav>
-        <nav>
-          {categories.map((category) => {
-            return (
-              <ATag href={`/${category}`} key={category}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </ATag>
-            );
-          })}
-        </nav>
-        <nav>
-          <ATag href={"/wishlist"}>View wishlist</ATag>
-        </nav>
-      </Nav>
-    );
-  }
+  // if (!isLoading) {
+  return (
+    <Nav>
+      <nav>
+        <ATag href={"/"}>Home</ATag>
+      </nav>
+      <nav>
+        {catArray.map((category) => {
+          return (
+            <ATag href={`/${category}`} key={category}>
+              {category}
+              {/* {category.charAt(0).toUpperCase() + category.slice(1)} */}
+            </ATag>
+          );
+        })}
+      </nav>
+      <nav>
+        <ATag href={"/addItem"}>Add new item</ATag>
+        <ATag href={"/wishlist"}>View wishlist</ATag>
+      </nav>
+    </Nav>
+  );
 }
+// }
 
 // Styling
 
@@ -53,4 +66,12 @@ const Nav = styled.div`
 
 const ATag = styled.a`
   padding: 0.5vw;
+  background-color: lightgrey;
+  margin: 0.5vw;
+  /* padding: 1vw; */
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.06);
+  }
 `;
