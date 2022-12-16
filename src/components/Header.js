@@ -4,6 +4,7 @@ import styled from "styled-components";
 export default function Header() {
   return (
     <HeaderContainer>
+      <Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img>
       <Title>
         <HeaderOne>SimpliShop</HeaderOne>
       </Title>
@@ -20,14 +21,14 @@ export default function Header() {
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: aquamarine;
+  background-color: white;
   height: 15vh;
 `;
 
 const HeaderOne = styled.h1`
   font-size: 5vw;
   margin: 10px;
-  color: red;
+  color: #ffa372;
 `;
 
 const Title = styled.div`
@@ -40,13 +41,14 @@ const Title = styled.div`
 const Login = styled.div`
   position: relative;
   top: 2vw;
-  left: 85vw;
+  left: 75vw;
   z-index: 2;
+  height: 6vw;
 `;
 
 const LogoutBtn = styled.button`
   align-content: center;
-
+  border-style: none;
   width: 70px;
   height: 30px;
   grid-column: 3;
@@ -54,13 +56,26 @@ const LogoutBtn = styled.button`
 
   align-self: start;
   justify-self: center;
+  color: White;
+  border-radius: 20px;
+  background-color: #ffa372;
 
-  background-color: green;
+  &:hover {
+    background-color: #e07426;
+  }
 `;
 
 const UserEmail = styled.p`
-  grid-area: 1 / 3;
-
   align-self: end;
   justify-self: center;
+`;
+
+const Img = styled.img`
+  z-index: 2;
+  align-self: flex-start;
+  justify-self: flex-start;
+  height: 8vw;
+  position: relative;
+  left: 2vw;
+  top: 0.05vw;
 `;
