@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 import fetchEditOneItem from "../utils/Items/fetchEditOneItem";
 
 export default function EditItem() {
@@ -20,22 +21,45 @@ export default function EditItem() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("itemId")} placeholder="Item Id" />
+        <h2>Edit your item here:</h2>
+        <Input1 {...register("itemId")} placeholder="Item Id" />
         <p>{errors.itemId?.message}</p>
-        <input {...register("name")} placeholder="Title" />
+        <Input {...register("name")} placeholder="Title" />
         <p>{errors.name?.message}</p>
-        <input {...register("image")} placeholder="Image url" />
+        <Input {...register("image")} placeholder="Image url" />
         <p>{errors.image?.message}</p>
-        <input {...register("description")} placeholder="Description" />
+        <Input {...register("description")} placeholder="Description" />
         <p>{errors.description?.message}</p>
-        <input {...register("category")} placeholder="Category" />
+        <Input {...register("category")} placeholder="Category" />
         <p>{errors.category?.message}</p>
-        <input {...register("quantity")} placeholder="Quantity" />
+        <Input {...register("quantity")} placeholder="Quantity" />
         <p>{errors.quantity?.message}</p>
-        <input {...register("price")} placeholder="Price" />
+        <Input {...register("price")} placeholder="Price" />
         <p>{errors.price?.message}</p>
-        <input type="submit" />
+        <Submit type="submit" />
       </form>
     </>
   );
 }
+
+// Styling
+
+const Input1 = styled.input`
+  width: 20vw;
+  height: 2vw;
+  border-radius: 10px;
+  margin-top: 1vw;
+`;
+
+const Input = styled.input`
+  width: 20vw;
+  height: 2vw;
+  border-radius: 10px;
+`;
+
+const Submit = styled.input`
+  width: 10vw;
+  height: 2.5vw;
+  border-radius: 10px;
+  margin-bottom: 1vw;
+`;
