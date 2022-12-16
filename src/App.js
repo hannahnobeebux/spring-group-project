@@ -9,6 +9,7 @@ import DeleteItem from "./components/DeleteItem";
 import EditItem from "./components/EditItem";
 import ItemsByCategory from "./components/ItemsByCategory";
 import WishList from "./components/WishList";
+import Users from "./components/Users";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/editItem" element={<EditItem />} />
         <Route path="/:category" element={<ItemsByCategory />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/users" element={<Users />} />
       </Routes>
       <Footer />
     </div>
