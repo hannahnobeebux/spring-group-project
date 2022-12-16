@@ -1,19 +1,19 @@
 export default async function fetchDeleteOneItem(itemId) {
-    try {
-      const response = await fetch(`http://localhost:8080/shop/item/${itemId}`, {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/shop/item/${itemId.itemId}`,
+      {
         method: "DELETE",
-      });
-      const data = await response.json();
-      if (response.status === 200) {
-      } else {
-        if (data.errors !== undefined) {
-          alert(data.errors[0].msg);
-          return;
-        }
-        alert(data.message);
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
       }
-    } catch (error) {
-      alert(error.message);
+    );
+    if (response.status === 200) {
+      return;
     }
+  } catch (error) {
+    alert(error.message);
   }
-  
+}
