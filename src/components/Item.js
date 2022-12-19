@@ -3,8 +3,24 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
+import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 
-export default function Item() {
+async function fetchWishlist(item) {
+  return await fetchGetOneUserWishlist(1);
+}
+
+async function itemInWishlist(wishlist, item) {
+  console.log(wishlist, item.id);
+  if (wishlist.includes(item.id)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export default async function Item() {
+  let userWishlist = await fetchWishlist();
+  console.log(userWishlist);
   const [items, setItems] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,9 +34,10 @@ export default function Item() {
     fetchAllItems();
   }, []);
 
-  const WishlistIcon = ({ item }) => {
-    const [lightMode, setLightMode] = useState(false);
-
+  const WishlistIcon = async ({ item }) => {
+    const [lightMode, setLightMode] = useState(
+      itemInWishlist(userWishlist, item)
+    );
     return (
       <img
         onClick={async () => {
@@ -61,10 +78,11 @@ const Section = styled.section`
   background-color: white;
   border-radius: 20px;
   width: 20vw;
-  height: 25vw;
+  height: 30vw;
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
+  /* justify-content: space-between; */
   transition: transform 0.3s ease-in-out;
   &:hover {
     transform: scale(1.06);
@@ -72,7 +90,7 @@ const Section = styled.section`
 `;
 
 const SubHeading = styled.h3`
-  font-size: 30px;
+  font-size: 20px;
   margin: 30px;
 `;
 
@@ -85,8 +103,8 @@ const PTag = styled.p`
 `;
 
 const Image = styled.img`
-  width: 15vw;
-  height: 15vw;
+  width: 12vw;
+  height: 12vw;
   align-self: center;
 `;
 
