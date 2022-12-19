@@ -48,8 +48,8 @@ export default function AddItem() {
         >
           <option value="Baby">Baby</option>
           <option value="Books">Books</option>
-          <option value="Entertainment">Entertainment</option>
           <option value="Fashion">Fashion</option>
+          <option value="Garden">Entertainment</option>
           <option value="Home">Home</option>
           <option value="Toys">Toys</option>
           <option value="Technology">Technology</option>

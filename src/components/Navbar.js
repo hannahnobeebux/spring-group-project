@@ -10,8 +10,8 @@ export default function NavBar() {
   const catArray = [
     "Baby",
     "Books",
-    "Entertainment",
     "Fashion",
+    "Garden",
     "Home",
     "Toys",
     "Technology",
