@@ -10,6 +10,7 @@ import EditItem from "./components/EditItem";
 import ItemsByCategory from "./components/ItemsByCategory";
 import WishList from "./components/WishList";
 import Users from "./components/Users";
+import LoggedInUser from "./components/LoggedInUser";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/:category" element={<ItemsByCategory />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/loggedIn" element={<LoggedInUser />} />
       </Routes>
       <Footer />
     </div>
