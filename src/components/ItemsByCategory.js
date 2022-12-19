@@ -7,12 +7,10 @@ export default function ItemsByCategory() {
   const [items, setItems] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams();
-  console.log(category);
 
   useEffect(() => {
     async function fetchItemsByCategory() {
       const data = await fetchGetAllItemsByCategory(category);
-      console.log(data);
       setItems(data);
       setIsLoading(false);
     }
