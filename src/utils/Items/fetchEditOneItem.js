@@ -1,21 +1,20 @@
 export default async function fetchEditOneItem(item) {
+  for (const key in item) {
+    if (item[key] === "") {
+      delete item[key];
+    }
+  }
+
   try {
     const response = await fetch(
-      `http://localhost:8080/shop/item${item.itemId}`,
+      `http://localhost:8080/shop/item/${item.itemId}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify({
-          name: item.name,
-          image: item.image,
-          description: item.description,
-          category: item.category,
-          quantity: item.quantity,
-          price: item.price,
-        }),
+        body: JSON.stringify(item),
       }
     );
     if (response.status === 200) {
