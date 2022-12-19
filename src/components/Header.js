@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactSVG } from "react-svg";
+import accountIcon from "../images/account.svg";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -9,7 +12,11 @@ export default function Header() {
         <HeaderOne>SimpliShop</HeaderOne>
       </Title>
       <Login>
-        <LogoutBtn>Log Out</LogoutBtn>
+        <Link to={"/loggedIn"}>
+          <Button>
+            <ReactSVG src={accountIcon} />
+          </Button>
+        </Link>
         <UserEmail>example@example.com</UserEmail>
       </Login>
     </HeaderContainer>
@@ -46,23 +53,10 @@ const Login = styled.div`
   height: 6vw;
 `;
 
-const LogoutBtn = styled.button`
-  align-content: center;
-  border-style: none;
-  width: 70px;
-  height: 30px;
-  grid-column: 3;
-  grid-row: 2;
-
-  align-self: start;
-  justify-self: center;
-  color: White;
-  border-radius: 20px;
-  background-color: #ffa372;
-
-  &:hover {
-    background-color: #e07426;
-  }
+const Button = styled.button`
+  background-color: white;
+  border: none;
+  border-radius: 50px;
 `;
 
 const UserEmail = styled.p`
