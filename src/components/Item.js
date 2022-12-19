@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
+import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 
 export default function Item() {
   const [items, setItems] = useState();
@@ -22,7 +23,10 @@ export default function Item() {
 
     return (
       <img
-        onClick={() => setLightMode((prevMode) => !prevMode)}
+        onClick={async () => {
+          setLightMode((prevMode) => !prevMode);
+          await fetchEditOneWishlist(1, item.id);
+        }}
         src={
           lightMode
             ? "https://www.svgrepo.com/show/159717/heart.svg"
