@@ -15,8 +15,11 @@ const StyledFooter = styled.footer`
   text-align: center;
   padding: 10px;
   margin: 0;
-  position: fixed;
+  margin-top: 1rem;
+  position: sticky;
+  display: none;
   bottom: 0;
+  left: 0%;
   width: 100vw;
   font-weight: bold;
 `;
