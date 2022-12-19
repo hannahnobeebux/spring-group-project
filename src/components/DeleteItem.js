@@ -12,7 +12,6 @@ export default function DeleteItem() {
     },
   });
   async function onSubmit(data) {
-    console.log(data);
     await fetchDeleteOneItem(data);
   }
   console.log(errors);
