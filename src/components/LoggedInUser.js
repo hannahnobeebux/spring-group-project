@@ -1,6 +1,16 @@
 import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 
 export default function LoggedInUser() {
+  // Check if user is authenticated
+  // If not then redirect to /login
+  // If user is logged in then populate data
+  useEffect(() => {
+    console.log(checkIfUserIsAuthenticated());
+  }, []);
   return (
     <Section>
       <h2>My account details:</h2>
