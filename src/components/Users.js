@@ -15,7 +15,6 @@ export default function Users() {
   }, []);
 
   if (!isLoading) {
-    console.log(users);
     return users.map((user) => (
       <section key={user.id}>
         <h3>{user.firstName}</h3>
