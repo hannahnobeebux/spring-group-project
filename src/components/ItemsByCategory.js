@@ -48,10 +48,12 @@ export default function ItemsByCategory() {
               </SubHeading>
               <Image src={item.image} />
             </Link>
-            <PTag>£{item.price.toFixed(2)}</PTag>
-            <Wishlist id="wishlist">
-              <WishlistIcon item={item} />
-            </Wishlist>
+            <Bottom>
+              <PTag>£{item.price.toFixed(2)}</PTag>
+              <Wishlist id="wishlist">
+                <WishlistIcon item={item} />
+              </Wishlist>
+            </Bottom>
           </Section>
         ))}
       </Container>
@@ -72,10 +74,11 @@ const Section = styled.section`
   background-color: white;
   border-radius: 20px;
   width: 20vw;
-  height: 25vw;
+  height: 30vw;
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
+  justify-content: space-between
   transition: transform 0.3s ease-in-out;
   &:hover {
     transform: scale(1.06);
@@ -83,30 +86,35 @@ const Section = styled.section`
 `;
 
 const SubHeading = styled.h3`
-  font-size: 20px;
-  margin: 30px;
+  font-size: 25px;
+  height: 5vw;
+  /* margin: 30px; */
+`;
+
+const Image = styled.img`
+  /* width: 15vw; */
+  height: 10vw;
+  /* align-self: center; */
 `;
 
 const PTag = styled.p`
   display: inline-block;
-  margin-left: 0;
-  margin-bottom: 0;
+  /* margin-left: 0;
+  margin-bottom: 0; */
   font-size: 20px;
-  margin-top: 10;
+  margin-top: 4vw;
 `;
 
-const Image = styled.img`
-  width: 15vw;
-  height: 15vw;
-  align-self: center;
+const Bottom = styled.div`
+  justify-self: baseline;
 `;
 
 const Wishlist = styled.button`
-  margin-top: -1.5vw;
-  margin-right: 1.5vw;
+  /* margin-top: -1.5vw; */
+  /* margin-right: 1.5vw; */
   // width: fit-content;
-  align-self: flex-end;
-  justify-self: flex-end;
+  /* align-self: flex-end; */
+  /* justify-self: flex-end; */
   border-style: none;
   // color: White;
   // border-radius: 20px;

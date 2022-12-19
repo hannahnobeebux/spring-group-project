@@ -16,8 +16,8 @@ const StyledFooter = styled.footer`
   padding: 10px;
   margin: 0;
   margin-top: 1rem;
-  position: sticky;
-  display: none;
+  /* position: sticky; */
+  /* display: none; */
   bottom: 0;
   left: 0%;
   width: 100vw;
