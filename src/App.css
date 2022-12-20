@@ -1,3 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
+selector {
+  font-family: "Lobster", cursive;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
+selector {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+selector {
+  font-family: "Oswald", sans-serif;
+}
+
 .App {
   text-align: center;
 
@@ -34,10 +49,10 @@ a {
   color: black;
 }
 
-#edit-button {
+/* #edit-button {
   grid-row: 4;
   grid-column-start: 0;
   grid-column-end: 1;
   margin-left: 1vw;
   margin-top: 0;
-}
+} */
