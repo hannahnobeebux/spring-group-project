@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 export default function LoginForm() {
   // Create form
   // Make post request to auth server with email and password
@@ -12,8 +13,6 @@ export default function LoginForm() {
 
   async function onFormSubmit(e) {
     e.preventDefault();
-    // Send data
-
     try {
       const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
