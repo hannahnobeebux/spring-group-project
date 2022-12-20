@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logOutCurrentUser from "../utils/Users/logOutCurrentUser";
 
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 
@@ -24,6 +25,12 @@ export default function LoggedInUser() {
     setLastName(userData.lastName)
     setEmail(userData.emailAddress)
   }
+
+  async function logout() {
+    logOutCurrentUser()
+    return navigate('/')
+
+  }
   useEffect(() => {
     fetchAuthenticated()
   }, []);
@@ -34,7 +41,7 @@ export default function LoggedInUser() {
       <h3>{lastName}</h3>
       <h3>{email}</h3>
       <LogoutBtn>Edit details</LogoutBtn>
-      <LogoutBtn>Log out</LogoutBtn>
+      <LogoutBtn onClick={logout}>Log out</LogoutBtn>
     </Section>
   );
 }
