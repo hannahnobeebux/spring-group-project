@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 
 export default function Item() {
   const [items, setItems] = useState();
+  const [wishlist, setWishlist] = useState()
   const [isLoading, setIsLoading] = useState(true);
+  let checked = false;
 
   useEffect(() => {
     async function fetchAllItems() {
       const data = await fetchGetAllItems();
+      const wishList = await fetchGetOneUserWishlist(1)
+      setWishlist(wishList);
       setItems(data);
       setIsLoading(false);
     }
@@ -19,8 +24,7 @@ export default function Item() {
   }, []);
 
   const WishlistIcon = ({ item }) => {
-    const [lightMode, setLightMode] = useState(false);
-
+    const [lightMode, setLightMode] = useState(wishlist.includes(item.id));
     return (
       <img
         onClick={async () => {
@@ -67,7 +71,7 @@ const Section = styled.section`
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
   transition: transform 0.3s ease-in-out;
   &:hover {
     transform: scale(1.06);
