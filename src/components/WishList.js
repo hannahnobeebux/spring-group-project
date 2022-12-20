@@ -9,8 +9,10 @@ export default function WishList() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchGetOneUserWishlist(1);
-      await setUserWishlist(data);
+      const userId = localStorage.getItem('user_id')
+      console.log(userId)
+      // const data = await fetchGetOneUserWishlist(userId);
+      // await setUserWishlist(data);
       setIsLoading(false);
     }
 
@@ -18,12 +20,11 @@ export default function WishList() {
   }, []);
 
   if (!isLoading) {
-    console.log(userWishlist);
     return (
       <Container>
         <h1>My Wishlist</h1>
         <Section>
-          {userWishlist.map((item) => (
+          {userWishlist?.map((item) => (
             <WishlistItem item={item} />
           ))}
         </Section>

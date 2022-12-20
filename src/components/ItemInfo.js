@@ -14,6 +14,9 @@ export default function ItemInfo() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const userId = localStorage.getItem("user_id")
+
+
   useEffect(() => {
     async function fetchOneItem() {
       const data = await fetchGetOneItem(id);
@@ -28,7 +31,7 @@ export default function ItemInfo() {
   async function handleClick() {
     if(wishlist.includes(item.id))
     {
-      await fetchEditOneWishlist(1,id);
+      await fetchEditOneWishlist(userId,id);
     }
     await fetchDeleteOneItem(id);
     navigate("/");
@@ -70,29 +73,23 @@ export default function ItemInfo() {
   }
 }
 
-// Styling
-
+//Styling
 const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
   background-color: #f79071;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: 3;
   grid-row-start: 2;
-  /* grid-row-end: 400; */
-  /* margin-left: 2vw; */
-  text-align: center;
   align-items: center;
-  /* padding-left: 400px; */
   width: auto;
-  padding-bottom: 1vw;
-  padding-top: 0;
+  padding: 1vw;
+  margin-right: 5vw;
+  text-align: center;
 `;
 
 const ItemSection = styled.section`
-  /* display: flex; */
   display: grid;
-  grid-template-rows: 0.5fr 0.1fr 0.1fr 0.1fr 0.1fr;
+  grid-template-rows: repeat(5, 0.1fr);
   grid-template-columns: 1fr 1fr 1fr;
 `;
 
@@ -102,17 +99,13 @@ const SubHeading = styled.h3`
   color: #024249;
   font-weight: bold;
   grid-column-start: 2;
-  grid-column-end: 3;
-  /* margin: 20px; */
   font-size: 40px;
   text-align: center;
 `;
 
 const PTag = styled.p`
-  /* margin-right: 400px; */
   grid-column-start: 1;
   grid-column-end: 4;
-  /* overflow-wrap: break-word; */
   color: white;
   font-family: "Roboto Condensed";
   font-size: 1vw;
@@ -121,7 +114,6 @@ const PTag = styled.p`
 const SubTitleTag = styled.p`
   margin-top: 60px;
   font-size: 30px;
-  /* margin-right: 400px; */
   margin-bottom: 10px;
   grid-column-start: 2;
   grid-column-end: 4;
@@ -141,35 +133,23 @@ const Image = styled.img`
 `;
 
 const EditButton = styled.button`
-  /* padding: 10px; */
-  /* grid-row-start: 6;
-  grid-row-end: 400;
-  grid-column-start: 1;
-  grid-column-end: 1; */
-  /* grid-column: 1;
-  grid-row-start: 6;
-  grid-row-end: 400; */
-  margin-top: 15px;
   display: flex;
-
-  border-color: green;
-  border-width: 40px;
-  border-style: solid;
-  font-weight: bold;
-  font-size: 20px;
-
-  align-content: center;
+  align-items: center;
   justify-content: center;
-  border-style: none;
-  width: 8vw;
-  margin-bottom: 1vw;
-  padding: 1vw;
-
-  color: White;
+  margin: 15px 0;
   border-radius: 20px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  width: 8vw;
+  padding: 1vw;
+  color: white;
   background-color: #ffa372;
+  transition: background-color 0.2s;
 
   &:hover {
     background-color: #e07426;
   }
 `;
+
+

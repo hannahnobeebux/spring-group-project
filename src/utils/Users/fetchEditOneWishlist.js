@@ -1,7 +1,8 @@
 export default async function fetchEditOneWishlist(userId, userItemId) {
   try {
-    let debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
-    console.log(debug.json());
+    //let debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
+   // console.log(debug.json());
+    const accessToken = localStorage.getItem('access_token')
     const response = await fetch(
       `http://localhost:8080/shop/user/wishlist/${userId}`,
       {
@@ -9,14 +10,16 @@ export default async function fetchEditOneWishlist(userId, userItemId) {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ${accessToken}`
         },
         body: JSON.stringify({
           itemId: userItemId,
         }),
       }
     );
-    debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
-    console.log(debug.json());
+    console.log(response.status)
+    //debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
+    //console.log(debug.json());
     // const data = await response.json();
 
     // if (response.status === 200) {

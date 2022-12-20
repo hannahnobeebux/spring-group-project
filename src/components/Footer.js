@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
       </div>
       <div class="footer-links">
-        <a href="#">Contact Us</a>
+        <a href="mailto:example@example.com">Contact Us</a>
         <a href="#">Track Orders</a>
         <a href="#">Return Item</a>
         <a href="#">About</a>

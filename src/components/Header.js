@@ -1,10 +1,28 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import { ReactSVG } from "react-svg";
 import accountIcon from "../images/account.svg";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
+
+
 
 export default function Header() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+  async function fetchAuthenticated() {
+  const isAuthenticated = await checkIfUserIsAuthenticated();
+  
+  if(isAuthenticated == null) {
+    return navigate('/login')
+  }
+  const userData = isAuthenticated;
+  setEmail(userData.emailAddress)
+}
+useEffect(() => {
+  fetchAuthenticated()
+}, []);
   return (
     <HeaderContainer>
       <Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img>
@@ -17,7 +35,7 @@ export default function Header() {
             <ReactSVG src={accountIcon} />
           </Button>
         </Link>
-        <UserEmail>example@example.com</UserEmail>
+        <UserEmail>{email}</UserEmail>
       </Login>
     </HeaderContainer>
   );
@@ -42,6 +60,7 @@ const HeaderOne = styled.a`
 `;
 
 const Title = styled.div`
+  top: 0.20vw;
   width: 100%;
   text-align: center;
   position: absolute;
@@ -78,5 +97,5 @@ const Img = styled.img`
   height: 8vw;
   position: relative;
   left: 2vw;
-  top: 0.05vw;
+  top: -0.10vw;
 `;

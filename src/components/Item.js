@@ -10,11 +10,14 @@ export default function Item() {
   const [wishlist, setWishlist] = useState()
   const [isLoading, setIsLoading] = useState(true);
   let checked = false;
+  const userId = localStorage.getItem('user_id')
 
   useEffect(() => {
     async function fetchAllItems() {
       const data = await fetchGetAllItems();
-      const wishList = await fetchGetOneUserWishlist(1)
+      console.log(userId);
+      const wishList = userId ? (await fetchGetOneUserWishlist(userId)) : [] 
+      console.log(wishList);
       setWishlist(wishList);
       setItems(data);
       setIsLoading(false);
@@ -29,7 +32,7 @@ export default function Item() {
       <img
         onClick={async () => {
           setLightMode((prevMode) => !prevMode);
-          await fetchEditOneWishlist(1, item.id);
+          await fetchEditOneWishlist(userId, item.id);
         }}
         src={
           lightMode

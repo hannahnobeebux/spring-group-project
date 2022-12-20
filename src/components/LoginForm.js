@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 export default function LoginForm() {
   // Create form
@@ -45,18 +46,54 @@ export default function LoginForm() {
       <h1>Login Form!</h1>
       <form onSubmit={onFormSubmit}>
         <p>Email Address</p>
-        <input
+        <Input
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
-        ></input>
+        ></Input>
         <p>Password</p>
-        <input
+        <Input
           type="password"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
-        ></input>
-        <button type="submit">Login</button>
+        ></Input>
+        <Submit type="submit">Login</Submit>
       </form>
+
 </div>
 )
 }
+
+const Input = styled.input`
+  width: 20vw;
+  height: 2vw;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 3px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const Submit = styled.button`
+padding: 10px 20px;
+background: #e6e6e6;
+margin: 1vw;
+border-radius: 10px;
+border: 1px solid #ccc;
+color: black;
+font-size: 16 px;
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+
+&:hover {
+  background: #ccc;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+`;

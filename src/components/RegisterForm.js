@@ -27,7 +27,8 @@ export default function RegisterForm() {
           emailAddress: `${usernameInput}`,
           password: `${passwordInput}`,
           firstName: `${firstNameInput}`,
-          lastName: `${lastNameInput}`
+          lastName: `${lastNameInput}`,
+          WishList: []
         }),
       });
       if (response.status === 200) {
@@ -48,24 +49,28 @@ export default function RegisterForm() {
       <p>First Name</p>
         <input
         type="text"
+        required="true"
           value={firstNameInput}
           onChange={(e) => setFirstNameInput(e.target.value)}
         ></input>
         <p>Last Name</p>
         <input
         type="text"
+        required="true"
           value={lastNameInput}
           onChange={(e) => setLastNameInput(e.target.value)}
         ></input>
         <p>Email Address</p>
         <input
         type="email"
+        required="true"
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         ></input>
         <p>Password</p>
         <input
           type="password"
+        required="true"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         ></input>

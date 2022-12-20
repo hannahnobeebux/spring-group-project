@@ -9,6 +9,8 @@ export default function ItemsByCategory() {
   const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams();
 
+  const userId = localStorage.getItem("user_id")
+
   useEffect(() => {
     async function fetchItemsByCategory() {
       const data = await fetchGetAllItemsByCategory(category);
@@ -25,7 +27,8 @@ export default function ItemsByCategory() {
       <img
         onClick={async () => {
           setLightMode((prevMode) => !prevMode);
-          await fetchEditOneWishlist(1, item.id);
+          
+          await fetchEditOneWishlist(userId, item.id);
         }}
         src={
           lightMode
