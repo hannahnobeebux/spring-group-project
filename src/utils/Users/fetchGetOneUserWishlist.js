@@ -14,10 +14,10 @@ export default async function fetchGetOneUserWishlist(userId) {
     );
     const data = await response.json();
     if (response.status === 200) {
-      console.log(data)
+
       return data;
     } else {
-      console.log(data)
+
       if (data.errors !== undefined) {
         alert(data.errors[0].msg);
         return;

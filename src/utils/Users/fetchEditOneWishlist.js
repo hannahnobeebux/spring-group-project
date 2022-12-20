@@ -2,6 +2,7 @@ export default async function fetchEditOneWishlist(userId, userItemId) {
   try {
     //let debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
    // console.log(debug.json());
+   console.log(userId,userItemId);
     const accessToken = localStorage.getItem('access_token')
     const response = await fetch(
       `http://localhost:8080/shop/user/wishlist/${userId}`,

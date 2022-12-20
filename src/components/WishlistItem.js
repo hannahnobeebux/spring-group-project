@@ -4,13 +4,11 @@ import styled from "styled-components";
 import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
 
 export default function WishlistItem({ item }) {
-  console.log(item);
   const [wishlistItem, setWishlistItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
       const data = await fetchGetOneItem(item);
-      console.log(data);
       setWishlistItem(data);
       setIsLoading(false);
     }

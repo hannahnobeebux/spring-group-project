@@ -10,9 +10,8 @@ export default function WishList() {
   useEffect(() => {
     async function fetchData() {
       const userId = localStorage.getItem('user_id')
-      console.log(userId)
-      // const data = await fetchGetOneUserWishlist(userId);
-      // await setUserWishlist(data);
+      const data = await fetchGetOneUserWishlist(userId);
+      await setUserWishlist(data);
       setIsLoading(false);
     }
 

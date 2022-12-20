@@ -12,9 +12,10 @@ export default function DeleteItem() {
     },
   });
   async function onSubmit(data) {
-    await fetchEditOneWishlist(data)
-    await fetchDeleteOneItem(data);
+    const userId = localStorage.getItem('user_id')
     console.log(data)
+    await fetchEditOneWishlist(userId,data)
+    await fetchDeleteOneItem(data);
   }
   console.log(errors);
 

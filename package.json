@@ -11,7 +11,7 @@
     "react-hook-form": "^7.40.0",
     "react-router": "^6.4.5",
     "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-svg": "^15.1.16",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"

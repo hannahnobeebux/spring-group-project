@@ -20,7 +20,7 @@ export default function ItemInfo() {
   useEffect(() => {
     async function fetchOneItem() {
       const data = await fetchGetOneItem(id);
-      const wishList = await fetchGetOneUserWishlist(1)
+      const wishList = await fetchGetOneUserWishlist(userId);
       setWishlist(wishList);
       setItem(data);
       setIsLoading(false);
@@ -29,8 +29,10 @@ export default function ItemInfo() {
   }, [id]);
 
   async function handleClick() {
+
     if(wishlist.includes(item.id))
     {
+      console.log("hello");
       await fetchEditOneWishlist(userId,id);
     }
     await fetchDeleteOneItem(id);

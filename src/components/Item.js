@@ -15,9 +15,7 @@ export default function Item() {
   useEffect(() => {
     async function fetchAllItems() {
       const data = await fetchGetAllItems();
-      console.log(userId);
       const wishList = userId ? (await fetchGetOneUserWishlist(userId)) : [] 
-      console.log(wishList);
       setWishlist(wishList);
       setItems(data);
       setIsLoading(false);
