@@ -33,6 +33,8 @@ export default function LoginForm() {
         localStorage.setItem("token_type", tokenType);
         navigate("/loggedIn");
         return;
+      }else{
+        alert("You cannot login")
       }
     } catch (error) {
       console.log(error);
