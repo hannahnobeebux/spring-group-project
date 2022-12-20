@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
+import fetchDeleteOneItem from "../utils/Items/fetchDeleteOneItem";
 
 export default function ItemInfo() {
   const [item, setItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,6 +19,11 @@ export default function ItemInfo() {
     }
     fetchOneItem();
   }, [id]);
+
+  async function handleClick() {
+    await fetchDeleteOneItem(id);
+    navigate("/");
+  }
 
   if (!isLoading) {
     return (
@@ -46,6 +53,8 @@ export default function ItemInfo() {
           >
             <EditButton>Edit item</EditButton>
           </Link>
+
+          <EditButton onClick={handleClick}>Delete item</EditButton>
         </InfoSection>
       </ItemSection>
     );
@@ -55,15 +64,17 @@ export default function ItemInfo() {
 // Styling
 
 const InfoSection = styled.section`
-  background-color: #3f8b92;
-  grid-column-start: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f79071;
+  grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
   /* grid-row-end: 400; */
-  margin-left: 2vw;
+  /* margin-left: 2vw; */
   text-align: center;
   align-items: center;
-  padding-left: 400px;
+  /* padding-left: 400px; */
   width: auto;
   padding-bottom: 1vw;
   padding-top: 0;
@@ -77,37 +88,45 @@ const ItemSection = styled.section`
 `;
 
 const SubHeading = styled.h3`
-  grid-column-start: 0;
-  grid-column-end: 1;
+  font-family: "Roboto Condensed";
+  font-style: italic;
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  grid-column-end: 3;
   /* margin: 20px; */
   font-size: 40px;
   text-align: center;
 `;
 
 const PTag = styled.p`
-  margin-top: 60px;
-  margin-right: 400px;
+  /* margin-right: 400px; */
   grid-column-start: 1;
   grid-column-end: 4;
   /* overflow-wrap: break-word; */
+  color: white;
+  font-family: "Roboto Condensed";
+  font-size: 1vw;
 `;
 
 const SubTitleTag = styled.p`
   margin-top: 60px;
-  margin-right: 400px;
+  font-size: 30px;
+  /* margin-right: 400px; */
   margin-bottom: 10px;
-  grid-column-start: 1;
+  grid-column-start: 2;
   grid-column-end: 4;
   font-weight: bold;
+  color: white;
 `;
 
 const Image = styled.img`
   grid-row-start: 2;
   grid-row-end: 400;
-  grid-column-start: 0;
-  grid-column-end: 1;
-  width: 20vw;
-  height: 20vw;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 25vw;
+  /* height: 20vw; */
   margin-left: 2vw;
   align-self: left;
 `;
@@ -121,18 +140,22 @@ const EditButton = styled.button`
   /* grid-column: 1;
   grid-row-start: 6;
   grid-row-end: 400; */
+  margin-top: 15px;
   display: flex;
-  margin-left: 1vw;
-  text-align: center;
-  border-color: orange;
+
+  border-color: green;
+  border-width: 40px;
+  border-style: solid;
+  font-weight: bold;
+  font-size: 20px;
 
   align-content: center;
+  justify-content: center;
   border-style: none;
   width: 8vw;
   margin-bottom: 1vw;
   padding: 1vw;
 
-  align-self: center;
   color: White;
   border-radius: 20px;
   background-color: #ffa372;
