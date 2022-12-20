@@ -4,7 +4,39 @@ import styled from "styled-components";
 export default function Footer() {
   return (
     <StyledFooter>
-      <p>Created by Hannah, Vicky, Tyrese, Michael, Omar</p>
+      <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+  crossOrigin="anonymous"
+/>
+
+      <div class="footer-content">
+        <p>Created by Hannah, Vicky, Tyrese, Michael, Omar.</p>
+        <div class="social-links">
+          <a href="#" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#">Contact Us</a>
+        <a href="#">Track Orders</a>
+        <a href="#">Return Item</a>
+        <a href="#">About</a>
+      </div>
     </StyledFooter>
   );
 }
@@ -16,10 +48,46 @@ const StyledFooter = styled.footer`
   padding: 10px;
   margin: 0;
   margin-top: 1rem;
-  /* position: sticky; */
-  /* display: none; */
   bottom: 0;
   left: 0%;
-  width: 100vw;
+  width: 98.2vw;
   font-weight: bold;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-left: 10px;
+      color: white;
+      margin-right: 20px;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+
+      &:hover {
+        color: #61dafb;
+      }
+    }
+  }
+  .footer-links {
+    margin-top: 10px;
+  
+    a {
+      color: white;
+      font-size: 1rem;
+      margin-right: 50px; /* increase the value of this property to increase the spacing between the links */
+      text-decoration: none;
+      transition: all 0.3s;
+  
+      &:hover {
+        color: #61dafb;
+      }
+    }
+  }
 `;

@@ -78,7 +78,7 @@ const Section = styled.section`
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
   transition: transform 0.3s ease-in-out;
   &:hover {
     transform: scale(1.06);

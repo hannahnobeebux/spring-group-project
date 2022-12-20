@@ -7,7 +7,6 @@ export default function WishlistItem({ item }) {
   console.log(item);
   const [wishlistItem, setWishlistItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     async function fetchData() {
       const data = await fetchGetOneItem(item);
@@ -35,6 +34,7 @@ export default function WishlistItem({ item }) {
     );
   }
 }
+
 
 // Styling
 

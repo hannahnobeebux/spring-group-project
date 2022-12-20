@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import fetchDeleteOneItem from "../utils/Items/fetchDeleteOneItem";
-
+import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 export default function DeleteItem() {
   const {
     register,
@@ -12,7 +12,9 @@ export default function DeleteItem() {
     },
   });
   async function onSubmit(data) {
+    await fetchEditOneWishlist(data)
     await fetchDeleteOneItem(data);
+    console.log(data)
   }
   console.log(errors);
 

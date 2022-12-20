@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
 import fetchDeleteOneItem from "../utils/Items/fetchDeleteOneItem";
+import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 
 export default function ItemInfo() {
   const [item, setItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [wishlist, setWishlist] = useState()
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -14,6 +17,8 @@ export default function ItemInfo() {
   useEffect(() => {
     async function fetchOneItem() {
       const data = await fetchGetOneItem(id);
+      const wishList = await fetchGetOneUserWishlist(1)
+      setWishlist(wishList);
       setItem(data);
       setIsLoading(false);
     }
@@ -21,6 +26,10 @@ export default function ItemInfo() {
   }, [id]);
 
   async function handleClick() {
+    if(wishlist.includes(item.id))
+    {
+      await fetchEditOneWishlist(1,id);
+    }
     await fetchDeleteOneItem(id);
     navigate("/");
   }

@@ -34,7 +34,7 @@ export default function NavBar() {
       <nav>
         <ATag href={"/"}>Home</ATag>
       </nav>
-      <nav>
+      <Categorynav>
         {catArray.map((category) => {
           return (
             <ATag href={`/${category}`} key={category}>
@@ -43,7 +43,7 @@ export default function NavBar() {
             </ATag>
           );
         })}
-      </nav>
+      </Categorynav>
       <nav>
         <ATag href={"/addItem"}>Add new item</ATag>
         <ATag href={"/wishlist"}>View wishlist</ATag>
@@ -57,21 +57,34 @@ export default function NavBar() {
 
 const Nav = styled.div`
   padding: 1vw;
-  margin: 0;
+  margin-: 0;
   background-color: #61dafb;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
+const Categorynav = styled.div`
+  margin-left: 10vw;
+`;
 
 const ATag = styled.a`
-  padding: 0.5vw;
-  background-color: lightgrey;
-  margin: 0.5vw;
-  /* padding: 1vw; */
+  padding: 10px 20px;
+  background: #e6e6e6;
+  margin: 1vw;
   border-radius: 10px;
-  transition: transform 0.3s ease-in-out;
+  border: 1px solid #ccc;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
   &:hover {
-    transform: scale(1.06);
+    background: #ccc;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
   }
 `;
+
+
+
+

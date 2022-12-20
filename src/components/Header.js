@@ -9,7 +9,7 @@ export default function Header() {
     <HeaderContainer>
       <Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img>
       <Title>
-        <HeaderOne>SimpliShop</HeaderOne>
+        <HeaderOne href={"http://localhost:3000"}>SimpliShop</HeaderOne>
       </Title>
       <Login>
         <Link to={"/loggedIn"}>
@@ -30,12 +30,15 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   background-color: white;
   height: 15vh;
+
 `;
 
-const HeaderOne = styled.h1`
+const HeaderOne = styled.a`
   font-size: 5vw;
   margin: 10px;
   color: #ffa372;
+  font-weight: bold;
+  font-size: 100px
 `;
 
 const Title = styled.div`
@@ -57,6 +60,10 @@ const Button = styled.button`
   background-color: white;
   border: none;
   border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 const UserEmail = styled.p`

@@ -1,5 +1,7 @@
 export default async function fetchEditOneWishlist(userId, userItemId) {
   try {
+    let debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
+    console.log(debug.json());
     const response = await fetch(
       `http://localhost:8080/shop/user/wishlist/${userId}`,
       {
@@ -13,7 +15,8 @@ export default async function fetchEditOneWishlist(userId, userItemId) {
         }),
       }
     );
-    // console.log(response);
+    debug = await fetch(`http://localhost:8080/shop/user/wishlist/${userId}`,{ method: "GET"});
+    console.log(debug.json());
     // const data = await response.json();
 
     // if (response.status === 200) {

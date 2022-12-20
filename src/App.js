@@ -12,6 +12,7 @@ import WishList from "./components/WishList";
 import Users from "./components/Users";
 import LoggedInUser from "./components/LoggedInUser";
 import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/users" element={<Users />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
         <Route path="/loggedIn" element={<LoggedInUser />} />
       </Routes>
       <Footer />

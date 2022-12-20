@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function LoginForm() {
+export default function RegisterForm() {
   // Create form
   // Make post request to auth server with email and password
   // Get token from server
@@ -15,7 +15,7 @@ export default function LoginForm() {
     // Send data
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
+      const response = await fetch("http://localhost:8080/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,11 +28,7 @@ export default function LoginForm() {
       });
       if (response.status === 200) {
         const { accessToken, tokenType } = await response.json();
-        console.log(accessToken);
-        console.log(tokenType);
-        localStorage.setItem("access_token", accessToken);
-        localStorage.setItem("token_type", tokenType);
-        navigate("/loggedIn");
+        navigate("/login");
         return;
       }
     } catch (error) {
@@ -44,8 +40,22 @@ export default function LoginForm() {
     <div>
       <h1>Login Form!</h1>
       <form onSubmit={onFormSubmit}>
+        
+      <p>First Name</p>
+        <input
+        type="email"
+          value={usernameInput}
+          onChange={(e) => setUsernameInput(e.target.value)}
+        ></input>
+        <p>Last Name</p>
+        <input
+        type=""
+          value={usernameInput}
+          onChange={(e) => setUsernameInput(e.target.value)}
+        ></input>
         <p>Email Address</p>
         <input
+        type="email"
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         ></input>
@@ -55,6 +65,7 @@ export default function LoginForm() {
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         ></input>
+        
         <button type="submit">Login</button>
       </form>
 </div>

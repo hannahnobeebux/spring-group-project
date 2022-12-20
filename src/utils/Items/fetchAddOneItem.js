@@ -1,8 +1,8 @@
-export default async function fetchAddOneItem(item) {
+export default async function fetchAddOneItem(item,userId) {
   console.log(item);
   // try {
 
-  const response = await fetch(`http://localhost:8080/shop/item`, {
+  const response = await fetch(`http://localhost:8080/shop/item/${userId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
