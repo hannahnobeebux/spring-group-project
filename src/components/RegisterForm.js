@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 export default function RegisterForm() {
   // Create form
   // Make post request to auth server with email and password
@@ -28,7 +29,7 @@ export default function RegisterForm() {
           password: `${passwordInput}`,
           firstName: `${firstNameInput}`,
           lastName: `${lastNameInput}`,
-          WishList: []
+          wishList: []
         }),
       });
       if (response.status === 200) {
@@ -47,36 +48,71 @@ export default function RegisterForm() {
       <form onSubmit={onFormSubmit}>
         
       <p>First Name</p>
-        <input
+        <Input
         type="text"
         required={true}
           value={firstNameInput}
           onChange={(e) => setFirstNameInput(e.target.value)}
-        ></input>
+        ></Input>
         <p>Last Name</p>
-        <input
+        <Input
         type="text"
         required={true}
           value={lastNameInput}
           onChange={(e) => setLastNameInput(e.target.value)}
-        ></input>
+        ></Input>
         <p>Email Address</p>
-        <input
+        <Input
         type="email"
         required={true}
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
-        ></input>
+        ></Input>
         <p>Password</p>
-        <input
+        <Input
           type="password"
         required={true}
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
-        ></input>
+        ></Input>
         
-        <button type="submit">Login</button>
+        <Submit type="submit">Register</Submit>
       </form>
 </div>
 )
 }
+
+const Input = styled.input`
+  width: 20vw;
+  height: 2vw;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 3px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const Submit = styled.button`
+padding: 10px 20px;
+background: #e6e6e6;
+margin: 1vw;
+border-radius: 10px;
+border: 1px solid #ccc;
+color: black;
+font-size: 16 px;
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+
+&:hover {
+  background: #ccc;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+`;
