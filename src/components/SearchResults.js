@@ -44,7 +44,7 @@ export default function SearchResults() {
       </form>
       <section>
         {searchResults.map(item => {
-           return ( <SingleItem item={item} />)
+           return ( <p> </p>)
         })}
         {/* Display search results here */}
         </section>

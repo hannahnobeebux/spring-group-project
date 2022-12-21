@@ -54,7 +54,6 @@ export default function NavBar() {
       <DropdownButton id="dropdown-menu" title="Categories">
       {catArray.map((category) => {
           return (
-
             <Dropdown.Item href={`/${category}`} key={category}>
               {category}
             </Dropdown.Item>
