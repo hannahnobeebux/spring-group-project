@@ -20,9 +20,7 @@ export default async function fetchEditOneUser(user) {
         body: JSON.stringify(user),
       }
     );
-    console.log(await response.text())
-    console.log(response.status)
-    const data = await response.json();
+
     if (response.status === 200) {
     } else {
       if (data.errors !== undefined) {

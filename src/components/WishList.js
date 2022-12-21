@@ -24,7 +24,7 @@ export default function WishList() {
         <h1>My Wishlist</h1>
         <Section>
           {userWishlist?.map((item) => (
-            <WishlistItem item={item} />
+            <WishlistItem Item={item} />
           ))}
         </Section>
       </Container>
