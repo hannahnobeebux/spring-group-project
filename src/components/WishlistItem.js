@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
 
-export default function WishlistItem({ item }) {
+export default function WishlistItem({ Item }) {
   const [wishlistItem, setWishlistItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchGetOneItem(item);
+      const data = await fetchGetOneItem(Item);
       setWishlistItem(data);
       setIsLoading(false);
     }
@@ -44,7 +44,7 @@ const Section = styled.section`
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
   transition: transform 0.3s ease-in-out;
   &:hover {
     transform: scale(1.06);

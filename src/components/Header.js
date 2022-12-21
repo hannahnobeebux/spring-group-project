@@ -22,11 +22,12 @@ export default function Header() {
   }
 }
 useEffect(() => {
+  //location.reload()
   fetchAuthenticated()
 }, []);
   return (
     <HeaderContainer>
-      <Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img>
+      <a  href="/"><Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img></a>
       <Title>
         <HeaderOne href={"http://localhost:3000"}>SimpliShop</HeaderOne>
       </Title>
@@ -36,7 +37,9 @@ useEffect(() => {
             <ReactSVG src={accountIcon} />
           </Button>
         </Link>
+        <Link to={"/loggedIn"}>
         <UserEmail>{email}</UserEmail>
+        </Link>
       </Login>
     </HeaderContainer>
   );

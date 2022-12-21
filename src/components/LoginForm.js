@@ -34,7 +34,6 @@ export default function LoginForm() {
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("token_type", tokenType);
         navigate("/loggedIn");
-        
         return;
       }
     } catch (error) {

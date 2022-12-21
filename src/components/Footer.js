@@ -14,19 +14,19 @@ export default function Footer() {
       <div className="footer-content">
         <p>Created by Hannah, Vicky, Tyrese, Michael, Omar.</p>
         <div className="social-links">
-          <a href="#" target="_blank">
+          <a href="https://twitter.com/" target="_blank">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="#" target="_blank">
+          <a href="https://facebook.com/" target="_blank">
             <i className="fab fa-facebook-f"></i>
           </a>
-          <a href="#" target="_blank">
+          <a href="https://instagram.com/" target="_blank">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="#" target="_blank">
+          <a href="https://linkedin.com/" target="_blank">
             <i className="fab fa-linkedin-in"></i>
           </a>
-          <a href="#" target="_blank">
+          <a href="https://github.com/hannahnobeebux/spring-group-project" target="_blank">
             <i className="fab fa-github"></i>
           </a>
         </div>

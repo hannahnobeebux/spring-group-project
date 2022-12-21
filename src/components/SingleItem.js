@@ -5,8 +5,8 @@ import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 
-export default function Item() {
-  const [items, setItems] = useState();
+export default function SingleItem(props) {
+    const item = props.item;
   const [wishlist, setWishlist] = useState()
   const [isLoading, setIsLoading] = useState(true);
   let checked = false;
@@ -14,10 +14,8 @@ export default function Item() {
 
   useEffect(() => {
     async function fetchAllItems() {
-      const data = await fetchGetAllItems();
       const wishList = userId ? (await fetchGetOneUserWishlist(userId)) : [] 
       setWishlist(wishList);
-      setItems(data);
       setIsLoading(false);
     }
 
@@ -44,7 +42,7 @@ export default function Item() {
 
   // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
   if (!isLoading) {
-    return items.map((item) => (
+    return (
       <Section key={item.id}>
         <Link to={`/itemInfo/${item.id}`}>
           <SubHeading>
@@ -60,127 +58,62 @@ export default function Item() {
           </Wishlist>
         </Bottom>
       </Section>
-    ));
+    );
   }
 }
 
-// const Section = styled.section`
-//   background-color: white;
-//   border-radius: 20px;
-//   width: 20vw;
-//   height: 25vw;
-//   margin: 2vw 1vw;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   transition: transform 0.3s ease-in-out;
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-//   &:hover {
-//     transform: scale(1.06);
-//   }
-// `;
-
-// const SubHeading = styled.h3`
-//   font-size: 28px;
-//   height: 5vw;
-//   /* margin: 30px; */
-// `;
-
-// const Image = styled.img`
-//   /* width: 15vw; */
-//   height: 10vw;
-//   /* align-self: center; */
-// `;
-
-// const PTag = styled.p`
-//   display: inline-block;
-//   /* margin-left: 0; 
-//   margin-bottom: 20px; */
-//   font-size: 25px;
-// `;
-
-// const Bottom = styled.div`
-//   justify-self: baseline;
-// `;
-
-// const Wishlist = styled.button`
-//   /* margin-top: -1.5vw; */
-//   /* margin-right: 1.5vw; */
-  
-//   // width: fit-content;
-//   /* align-self: flex-end; */
-//   /* justify-self: flex-end; */
-//   border-style: none;
-//   // color: White;
-//   // border-radius: 20px;
-//   background-color: transparent;
-//   width: 40px;
-//   height: 40px;
-//   // &:hover {
-//   //   background-color: #e07426;
-//   // }
-// `;
-
 const Section = styled.section`
-  background-color: White;
+  background-color: white;
   border-radius: 20px;
   width: 20vw;
-  height: 23vw;
+  height: 30vw;
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease-in-out;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   &:hover {
     transform: scale(1.06);
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 `;
 
 const SubHeading = styled.h3`
-  font-size: 28px;
+  font-size: 25px;
   height: 5vw;
-  margin-top: 30px;
-  margin-bottom: 0px;
-  text-align: center;
+  /* margin: 30px; */
 `;
 
 const Image = styled.img`
-  // width: 15vw;
+  /* width: 15vw; */
   height: 10vw;
-  align-self: center;
-  border-radius: 10px;
+  /* align-self: center; */
 `;
 
 const PTag = styled.p`
   display: inline-block;
-  margin-left: 0; 
-  margin-bottom: 20px;
-  font-size: 25px;
-  font-weight: bold;
+  /* margin-left: 0;
+  margin-bottom: 0; */
+  font-size: 20px;
+  margin-top: 4vw;
 `;
 
 const Bottom = styled.div`
   justify-self: baseline;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
 `;
 
 const Wishlist = styled.button`
+  /* margin-top: -1.5vw; */
+  /* margin-right: 1.5vw; */
+  // width: fit-content;
+  /* align-self: flex-end; */
+  /* justify-self: flex-end; */
   border-style: none;
+  // color: White;
+  // border-radius: 20px;
   background-color: transparent;
-  cursor: pointer;
   width: 40px;
   height: 40px;
-  transition: transform 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-
-const WishlistIcon = styled.img`
-  
+  // &:hover {
+  //   background-color: #e07426;
+  // }
 `;

@@ -1,5 +1,6 @@
  # SimpliShop 🛒 
 ## Multiverse Final Group Project 
+#### Created by Hannah, Vicky, Tyrese, Michael and Omar
 
 #### This is the **front end repo** --> [Click here for the backend repo](https://github.com/MBailey114/springBackEnd) 
 

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router";
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import styled from "styled-components";
 import fetchGetSearchItems from '../utils/Items/fetchGetSearchItems'
 import SingleItem from "../components/SingleItem"
@@ -9,6 +9,7 @@ import SingleItem from "../components/SingleItem"
 export default function SearchResults() {
 
     const [searchResults, setSearchResults] = useState([]);
+    const [queryInput, setQueryInput] = useState("")
     const {
         register,
         handleSubmit,
@@ -32,21 +33,33 @@ export default function SearchResults() {
     // navigate(`/loggedIn`);
   }
 
+  async function handleChange(e){
+    const queryInput = e.target.value.trim();
+    if(queryInput.length < 0) return;
+    const results = await fetchGetSearchItems(queryInput);
+    if (results?.length <= 0) return;
+    setSearchResults(results)
+    setQueryInput()
+  }
+
+
   
 
   return (
     <div>
       <form onSubmit={ handleSubmit(onSubmit)}>
-        <h2>Search</h2>
-        <Input {...register("query")} placeholder="query" />
+        <h2>Search {queryInput}</h2>
+        <Input {...register("query")} placeholder="query" onChange={handleChange}/>
         <p>{errors.query?.message}</p>
         <Submit type="submit" />
       </form>
       <section>
-        {searchResults.map(item => {
-           return ( <p> </p>)
+        <Container>
+        {searchResults.map((item) => {
+           return ( <p><SingleItem item={item}/></p>)
         })}
         {/* Display search results here */}
+        </Container>
         </section>
     </div>
   );
@@ -88,4 +101,26 @@ transition: all 0.3s ease;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }
+`;
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const Section = styled.section`
+  background-color: white;
+  border-radius: 20px;
+  width: 20vw;
+  height: 30vw;
+  margin: 2vw 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.06);
+  }
 `;

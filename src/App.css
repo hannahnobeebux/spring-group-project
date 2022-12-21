@@ -58,3 +58,22 @@ a {
   margin-left: 1vw;
   margin-top: 0;
 } */
+
+#dropdown-menu {
+  padding: 10px 20px;
+  background: #e6e6e6;
+  margin: 1vw;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+#dropdown-menu:hover {
+    background: #ccc;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+  }
+

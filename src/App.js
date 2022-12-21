@@ -4,6 +4,7 @@ import ItemContainer from "./components/ItemContainer";
 import Footer from "./components/Footer";
 import { Route, Routes } from "react-router-dom";
 import ItemInfo from "./components/ItemInfo";
+import SearchResults from "./components/SearchResults";
 import AddItem from "./components/AddItem";
 import DeleteItem from "./components/DeleteItem";
 import EditItem from "./components/EditItem";
@@ -14,6 +15,7 @@ import LoggedInUser from "./components/LoggedInUser";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm"
 import EditUser from "./components/EditUser"
+import UserItems from "./components/UserItems"
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<ItemContainer />} />
+        <Route path="/search" element={<SearchResults />} />
         <Route path="/itemInfo/:id" element={<ItemInfo />} />
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/deleteItem" element={<DeleteItem />} />
@@ -33,6 +36,7 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/loggedIn" element={<LoggedInUser />} />
         <Route path="/editUser/:id" element={<EditUser />} />
+        <Route path="/userItems" element={<UserItems/>}/>
       </Routes>
       <Footer />
     </div>

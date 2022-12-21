@@ -11,7 +11,7 @@ export default function LoggedInUser() {
   // If user is logged in then populate data
   const navigate = useNavigate();
 
-  const userId = 1;
+  const userId = localStorage.getItem("user_id");
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -43,10 +43,10 @@ export default function LoggedInUser() {
 
   return (
     <Section>
-      <h2>My account details:</h2>
-      <h3>{firstName}</h3>
-      <h3>{lastName}</h3>
-      <h3>{email}</h3>
+      <StyledH2>My account details:</StyledH2>
+      <StyledH3>Welcome {firstName} {lastName}! </StyledH3>
+      {/* <StyledH3>{lastName}</StyledH3> */}
+      <StyledH3>{email}</StyledH3>
       <Submit onClick={editDetails}>Edit details</Submit>
       <Submit onClick={logout}>Log out</Submit>
     </Section>
@@ -77,7 +77,17 @@ const LogoutBtn = styled.button`
   }
 `;
 
+const StyledH3 = styled.h3`
+  font-family: "Roboto Condensed", sans-serif;
+
+`
+
+const StyledH2 = styled.h2`
+  font-family: "Oswald";
+`
+
 const Submit = styled.button`
+font-family: "Oswald";
 padding: 10px 20px;
 width: 8vw;
 background: #e6e6e6;
@@ -85,7 +95,7 @@ margin: 1vw;
 border-radius: 10px;
 border: 1px solid #ccc;
 color: black;
-font-size: 16 px;
+font-size: 20px;
 position: relative;
 overflow: hidden;
 transition: all 0.3s ease;

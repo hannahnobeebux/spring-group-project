@@ -56,12 +56,12 @@ export default function AddItem() {
           <option value="Technology">Technology</option>
         </Select>
         <p>{errors.category?.message}</p>
-        <Input type="number"
+        <Input min="1" type="number"
           {...register("quantity", { required: "This is required" })}
           placeholder="Quantity"
         />
         <p>{errors.quantity?.message}</p>
-        <Input type="number"
+        <Input min="0.01" step="0.01" type="number"
           {...register("price", { required: "This is required" })}
           placeholder="Price"
         />

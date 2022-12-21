@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "../App.css";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function NavBar() {
   const [email, setEmail] = useState("")
@@ -51,7 +51,10 @@ export default function NavBar() {
         <ATag href={"/"}>Home</ATag>
         <ATag href={"/search"}>Search</ATag>
       </nav>
-      <DropdownButton id="dropdown-menu" title="Categories">
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Categories
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
       {catArray.map((category) => {
           return (
             <Dropdown.Item href={`/${category}`} key={category}>
@@ -59,17 +62,17 @@ export default function NavBar() {
             </Dropdown.Item>
           );
         })}
-      </DropdownButton>
-       <Categorynav>
-         {catArray.map((category) => {
-          return (
-            <ATag href={`/${category}`} key={category}>
-              {category}
-              {/* {category.charAt(0).toUpperCase() + category.slice(1)} */}
-            </ATag>
-          );
-        })}
-      </Categorynav>
+      </Dropdown.Menu>
+      {/* <Categorynav>
+        {catArray.map((category) => {
+        return (
+          <ATag href={`/${category}`} key={category}>
+            {category}
+            {/* {category.charAt(0).toUpperCase() + category.slice(1)} */}
+          {/* </ATag> */}
+        {/* ); */}
+      {/* })} */}
+    {/* </Categorynav> */}
       <nav>
         <ATag href={"/userItems"}>Your Items</ATag>
         <ATag href={"/addItem"}>Add new item</ATag>
@@ -111,6 +114,8 @@ const ATag = styled.a`
     transform: translateY(-3px);
   }
 `;
+
+
 
 
 

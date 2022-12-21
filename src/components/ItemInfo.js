@@ -5,16 +5,20 @@ import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
 import fetchDeleteOneItem from "../utils/Items/fetchDeleteOneItem";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
+import fetchGetUseridByItem from "../utils/Items/fetchGetUseridByItem";
 
 export default function ItemInfo() {
   const [item, setItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [wishlist, setWishlist] = useState()
+  const [userItem, setUserItem] = useState()
+  const [userItemFetched, setUserItemFetched] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const userId = localStorage.getItem("user_id")
+  let userId = localStorage.getItem("user_id")
+  userId = parseInt(userId);
 
 
   useEffect(() => {
@@ -25,7 +29,17 @@ export default function ItemInfo() {
       setItem(data);
       setIsLoading(false);
     }
+  
+    async function fetchItemUser() {
+      const data = await fetchGetUseridByItem(id);
+      if (data == null){
+        setUserItem(null);
+      }
+      setUserItemFetched(true);
+    }
+  
     fetchOneItem();
+    fetchItemUser();
   }, [id]);
 
   async function handleClick() {
@@ -58,6 +72,9 @@ export default function ItemInfo() {
             Description: <br></br>
             {item.description}
           </PTag>
+          { userItemFetched && userId === userItem ? (
+            <>
+
           <Link
             id="edit-button"
             to={{
@@ -69,9 +86,13 @@ export default function ItemInfo() {
           </Link>
 
           <EditButton onClick={handleClick}>Delete item</EditButton>
+          </>
+          ) : null }
         </InfoSection>
       </ItemSection>
     );
+  } else{
+    return <div>Loading...</div>;
   }
 }
 

@@ -7,7 +7,6 @@ export default async function fetchEditOneUser(user) {
   try {
     const accessToken = localStorage.getItem('access_token');
     const userId = localStorage.getItem('user_id');
-    console.log(user)
     const response = await fetch(
       `http://localhost:8080/shop/user/${userId}`,
       {
@@ -21,6 +20,8 @@ export default async function fetchEditOneUser(user) {
       }
     );
 
+    const data = response.json()
+
     if (response.status === 200) {
     } else {
       if (data.errors !== undefined) {
@@ -30,7 +31,6 @@ export default async function fetchEditOneUser(user) {
       alert(data.message);
     }
   } catch (error) {
-    console.log('hi');
     console.log(error.message);
 
     // alert(error.message);
