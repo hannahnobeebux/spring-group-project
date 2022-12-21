@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "../App.css";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 export default function NavBar() {
   const [email, setEmail] = useState("")
@@ -48,9 +49,20 @@ export default function NavBar() {
     <Nav>
       <nav>
         <ATag href={"/"}>Home</ATag>
+        <ATag href={"/search"}>Search</ATag>
       </nav>
-      <Categorynav>
-        {catArray.map((category) => {
+      <DropdownButton id="dropdown-menu" title="Categories">
+      {catArray.map((category) => {
+          return (
+
+            <Dropdown.Item href={`/${category}`} key={category}>
+              {category}
+            </Dropdown.Item>
+          );
+        })}
+      </DropdownButton>
+       <Categorynav>
+         {catArray.map((category) => {
           return (
             <ATag href={`/${category}`} key={category}>
               {category}
@@ -60,6 +72,7 @@ export default function NavBar() {
         })}
       </Categorynav>
       <nav>
+        <ATag href={"/userItems"}>Your Items</ATag>
         <ATag href={"/addItem"}>Add new item</ATag>
         <ATag href={email}>View wishlist</ATag>
       </nav>
