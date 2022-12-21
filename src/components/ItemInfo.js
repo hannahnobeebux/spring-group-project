@@ -9,6 +9,7 @@ import fetchGetUseridByItem from "../utils/Items/fetchGetUseridByItem";
 
 export default function ItemInfo() {
   const [item, setItem] = useState();
+  const [creator, setCreator] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [wishlist, setWishlist] = useState()
   const [userItem, setUserItem] = useState()
@@ -16,6 +17,7 @@ export default function ItemInfo() {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log(id);
 
   let userId = localStorage.getItem("user_id")
   userId = parseInt(userId);
@@ -24,22 +26,37 @@ export default function ItemInfo() {
   useEffect(() => {
     async function fetchOneItem() {
       const data = await fetchGetOneItem(id);
-      const wishList = await fetchGetOneUserWishlist(userId);
-      setWishlist(wishList);
+      if(userId){
+        const wishList = await fetchGetOneUserWishlist(userId);
+        setWishlist(wishList);
+      }
       setItem(data);
       setIsLoading(false);
+  
     }
   
     async function fetchItemUser() {
       const data = await fetchGetUseridByItem(id);
       if (data == null){
         setUserItem(null);
+        setCreator({firstName:"Unknown",lastName:""})
+      } else{
+        setUserItem(data)
+        fetchUser(data)
+
       }
       setUserItemFetched(true);
     }
-  
-    fetchOneItem();
+
+    async function fetchUser(user){
+      const response = await fetch(`http://localhost:8080/shop/user/${user}`)
+      const data = await response.json();
+      setCreator(data);
+    }
+
     fetchItemUser();
+    fetchOneItem();
+    
   }, [id]);
 
   async function handleClick() {
@@ -72,6 +89,25 @@ export default function ItemInfo() {
             Description: <br></br>
             {item.description}
           </PTag>
+          {userId !== userItem ? (
+            <Link
+              id="Seller"
+              to={{
+                pathname: `/profile/${userItem}`,
+              }}
+            >
+              Seller: {creator.firstName} {creator.lastName}
+            </Link>
+          ) : (
+            <Link
+              id="Seller"
+              to={{
+                pathname: `/userItems`,
+              }}
+            >
+              Seller: {creator.firstName} {creator.lastName}
+            </Link>
+          )}
           { userItemFetched && userId === userItem ? (
             <>
 
@@ -92,7 +128,7 @@ export default function ItemInfo() {
       </ItemSection>
     );
   } else{
-    return <div>Loading...</div>;
+
   }
 }
 
@@ -149,7 +185,7 @@ const Image = styled.img`
   grid-row-end: 400;
   grid-column-start: 1;
   grid-column-end: 2;
-  width: 25vw;
+  width: 20vw;
   /* height: 20vw; */
   margin-left: 2vw;
   align-self: left;

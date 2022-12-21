@@ -108,8 +108,8 @@ const Input = styled.input`
 
 
 const Select = styled.select`
-  width: 20.5vw;
-  height: 2.5vw;
+  width: 20vw;
+  height: 2vw;
   border-radius: 10px;
   margin-top: 1vw;
   border: 1px solid #ccc;

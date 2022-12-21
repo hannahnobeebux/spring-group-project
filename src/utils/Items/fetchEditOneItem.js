@@ -21,6 +21,6 @@ export default async function fetchEditOneItem(item) {
       return;
     }
   } catch (error) {
-    alert(error.message);
+    //alert(error.message);
   }
 }

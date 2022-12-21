@@ -34,6 +34,6 @@ export default async function fetchEditOneWishlist(userId, userItemId) {
     // }
   } catch (error) {
     console.log(userItemId);
-    alert(error.message);
+    //alert(error.message);
   }
 }

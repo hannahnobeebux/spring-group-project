@@ -6,12 +6,12 @@ export default async function fetchGetAllUsers() {
       return data;
     } else {
       if (data.errors !== undefined) {
-        alert(data.errors[0].msg);
+        //alert(data.errors[0].msg);
         return;
       }
-      alert(data.message);
+      //alert(data.message);
     }
   } catch (error) {
-    alert(error.message);
+    //alert(error.message);
   }
 }

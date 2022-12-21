@@ -29,12 +29,18 @@ export default function LoggedInUser() {
   }
 
   async function editDetails() {
+    navigate(`/editUser`)
+  }
+  async function editEmail() {
     navigate(`/editUser/${userId}`)
+  }
+  async function editPassword() {
+    navigate(`/user/password`)
   }
 
   async function logout() {
     logOutCurrentUser()
-    window.location.reload(false);
+    window.location.reload(false)
     return navigate('/')
   }
   useEffect(() => {
@@ -43,11 +49,14 @@ export default function LoggedInUser() {
 
   return (
     <Section>
+      <br/>
       <StyledH2>My account details:</StyledH2>
-      <StyledH3>Welcome {firstName} {lastName}! </StyledH3>
+      <StyledH3>Welcome <i><strong>{firstName} {lastName}</strong></i>! </StyledH3>
       {/* <StyledH3>{lastName}</StyledH3> */}
-      <StyledH3>{email}</StyledH3>
+      <StyledH3>Your email: <strong>{email}</strong></StyledH3>
       <Submit onClick={editDetails}>Edit details</Submit>
+      <Submit onClick={editEmail}>Edit email</Submit>
+      <Submit onClick={editPassword}>Edit password</Submit>
       <Submit onClick={logout}>Log out</Submit>
     </Section>
   );
@@ -78,30 +87,37 @@ const LogoutBtn = styled.button`
 `;
 
 const StyledH3 = styled.h3`
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  /* font-style: italic; */
+  font-size: 25px;
 
 `
 
 const StyledH2 = styled.h2`
-  font-family: "Oswald";
+  font-family: "Montserrat";
+  color: #17481E;
+  font-size: 25px;
 `
 
 const Submit = styled.button`
-font-family: "Oswald";
+font-family: "Montserrat";
 padding: 10px 20px;
 width: 8vw;
-background: #e6e6e6;
+/* background: #e6e6e6; */
+background-color: #ffa372;
 margin: 1vw;
 border-radius: 10px;
-border: 1px solid #ccc;
-color: black;
+border: 1px solid #FF7800;
+color: white;
+font-weight: bold;
 font-size: 20px;
 position: relative;
 overflow: hidden;
 transition: all 0.3s ease;
 align-self: center;
 &:hover {
-  background: #ccc;
+  /* background: #ccc; */
+  background-color: #FF7956;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }

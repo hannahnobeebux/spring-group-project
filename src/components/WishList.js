@@ -37,6 +37,7 @@ export default function WishList() {
 const Container = styled.section`
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
 
 const Section = styled.section`

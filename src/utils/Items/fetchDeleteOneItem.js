@@ -11,6 +11,6 @@ export default async function fetchDeleteOneItem(itemId) {
       return;
     }
   } catch (error) {
-    alert(error.message);
+    //alert(error.message);
   }
 }

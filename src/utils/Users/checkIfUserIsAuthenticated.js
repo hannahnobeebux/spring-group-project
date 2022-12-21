@@ -34,23 +34,23 @@ export default async function checkIfUserIsAuthenticated() {
       return data;
     } else if (response.status === 401) {
       // It is unauthorized
-      alert('You must login')
+      //alert('You must login')
       removeUserFromLocalStorage()
       return null
     } else {
       if (data.errors !== undefined) {
-        alert('User is not authenticated')
+        //alert('User is not authenticated')
         console.log(data.errors[0].msg);
         removeUserFromLocalStorage()
         return null;
       }
-      alert(data.message);
+      //alert(data.message);
       removeUserFromLocalStorage()
       return null;
 
     }
   } catch (error) {
-    alert(error.message);
+    //alert(error.message);
     removeUserFromLocalStorage()
     return null;
 

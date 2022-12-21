@@ -6,5 +6,6 @@ export default function logOutCurrentUser() {
     localStorage.removeItem("access_token")
     localStorage.removeItem("token_type")
     localStorage.removeItem("user_id")
+    localStorage.setItem("logged_in", "false")
 
 }

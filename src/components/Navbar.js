@@ -3,11 +3,15 @@ import styled from "styled-components";
 import "../App.css";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
-import Dropdown from 'react-bootstrap/Dropdown';
+import {Dropdown, DropdownButton} from 'react-bootstrap';
+import { set } from "react-hook-form";
+
 
 export default function NavBar() {
-  const [email, setEmail] = useState("")
-  // const [categories, setCategories] = useState();
+  const [wishlist, setWishlist] = useState("")
+  const [userItems, setUserItems] = useState("")
+  const [addItems, setAddItems] = useState("")
+  const [showMenu, setShowMenu] = useState();
   // const [isLoading, setIsLoading] = useState(true);
 
   const catArray = [
@@ -24,13 +28,21 @@ export default function NavBar() {
     const isAuthenticated = await checkIfUserIsAuthenticated();
     
     if (isAuthenticated == null) {
-      setEmail('/login')
+      setWishlist('/login')
+      setUserItems('/login')
+      setAddItems('/login')
     } else {
-      setEmail('/wishlist')
+      setWishlist('/wishlist')
+      setUserItems('/userItems')
+      setAddItems('/addItem')
     }
   }
   useEffect(() => {
     fetchAuthenticated()
+    window.addEventListener("storage",(e) => {
+      console.log("Storage changed")
+      fetchAuthenticated()
+   });
   }, []);
 
   // useEffect(() => {
@@ -47,37 +59,24 @@ export default function NavBar() {
   // if (!isLoading) {
   return (
     <Nav>
-      <nav>
-        <ATag href={"/"}>Home</ATag>
-        <ATag href={"/search"}>Search</ATag>
-      </nav>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Categories
-      </Dropdown.Toggle>
-      <Dropdown.Menu>
-      {catArray.map((category) => {
+      <Nav>
+        <ATag href={"/"} id={"a-tag-4"}>Home</ATag>
+        <ATag href={"/search"} id={"a-tag-5"}>Search</ATag>
+        <DropdownButton id="dropdown-basic-button" title="Categories" onClick={() => setShowMenu(!showMenu)} >
+        {showMenu && catArray.map((category) => {
           return (
-            <Dropdown.Item href={`/${category}`} key={category}>
+            <Dropdown.Item href={`/${category}`} key={category} id="dropdown-item">
               {category}
             </Dropdown.Item>
           );
         })}
-      </Dropdown.Menu>
-      {/* <Categorynav>
-        {catArray.map((category) => {
-        return (
-          <ATag href={`/${category}`} key={category}>
-            {category}
-            {/* {category.charAt(0).toUpperCase() + category.slice(1)} */}
-          {/* </ATag> */}
-        {/* ); */}
-      {/* })} */}
-    {/* </Categorynav> */}
-      <nav>
-        <ATag href={"/userItems"}>Your Items</ATag>
-        <ATag href={"/addItem"}>Add new item</ATag>
-        <ATag href={email}>View wishlist</ATag>
-      </nav>
+        </DropdownButton>
+        </Nav>
+      <Nav>
+        <ATag href={userItems} id={"a-tag-1"}>Your Items</ATag>
+        <ATag href={addItems} id={"a-tag-2"} >Add new item</ATag>
+        <ATag href={wishlist} id={"a-tag-3"} >View wishlist</ATag>
+      </Nav>
     </Nav>
   );
 }
@@ -86,30 +85,29 @@ export default function NavBar() {
 // Styling
 
 const Nav = styled.div`
-  padding: 1vw;
-  margin-: 0;
-  background-color: #61dafb;
+  margin: 0;
+  /* background-color: #61dafb; */
+  background-color:#66806A ;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-const Categorynav = styled.div`
-  margin-left: 10vw;
+  align-items: center;
 `;
 
 const ATag = styled.a`
   padding: 10px 20px;
-  background: #e6e6e6;
+  background-color: #ffa372;
   margin: 1vw;
   border-radius: 10px;
-  border: 1px solid #ccc;
-  color: black;
+  border: 1px solid #FF7800;
+  color: white;
+  font-weight: bold;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #ccc;
+    background: #FF7956;
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
     transform: translateY(-3px);
   }

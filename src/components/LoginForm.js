@@ -33,6 +33,7 @@ export default function LoginForm() {
         console.log(tokenType);
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("token_type", tokenType);
+        localStorage.setItem("logged_in", "true")
         navigate("/loggedIn");
         return;
       }

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 
 
-
 export default function Header() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("")
@@ -24,21 +23,25 @@ export default function Header() {
 useEffect(() => {
   //location.reload()
   fetchAuthenticated()
+    window.addEventListener("storage",(e) => {
+      console.log("Storage changed 2")
+      fetchAuthenticated()
+   });
 }, []);
   return (
     <HeaderContainer>
       <a  href="/"><Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img></a>
       <Title>
-        <HeaderOne href={"http://localhost:3000"}>SimpliShop</HeaderOne>
+        <HeaderOne href={"http://localhost:3000"} id={"simplishop-header"}>SimpliShop</HeaderOne>
       </Title>
       <Login>
         <Link to={"/loggedIn"}>
           <Button>
-            <ReactSVG src={accountIcon} />
+            <ReactSVG src={accountIcon} className="user-svg"/>
           </Button>
         </Link>
         <Link to={"/loggedIn"}>
-        <UserEmail>{email}</UserEmail>
+        <UserEmail id={"a-tag-email"}> {email}</UserEmail>
         </Link>
       </Login>
     </HeaderContainer>
@@ -60,7 +63,12 @@ const HeaderOne = styled.a`
   margin: 10px;
   color: #ffa372;
   font-weight: bold;
-  font-size: 100px
+  font-size: 100px;
+
+  &:hover {
+
+    color: #ffa372;
+  }
 `;
 
 const Title = styled.div`

@@ -3,9 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import fetchGetAllItemsByCategory from "../utils/Items/fetchGetAllItemsByCategory";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
+import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 
 export default function ItemsByCategory() {
   const [items, setItems] = useState();
+  const [wishlist, setWishlist] = useState()
   const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams();
 
@@ -14,20 +16,26 @@ export default function ItemsByCategory() {
   useEffect(() => {
     async function fetchItemsByCategory() {
       const data = await fetchGetAllItemsByCategory(category);
+      const wishList = userId ? (await fetchGetOneUserWishlist(userId)) : [] 
+      setWishlist(wishList);
       setItems(data);
       setIsLoading(false);
     }
     fetchItemsByCategory();
   }, [category]);
 
-  const WishlistIcon = ({ item }) => {
-    const [lightMode, setLightMode] = useState(false);
 
+  const WishlistIcon = ({ item }) => {
+    const [lightMode, setLightMode] = useState(wishlist.includes(item.id));
+    if(userId === null)
+    {
+      return;
+    }
+    else{
     return (
       <img
         onClick={async () => {
           setLightMode((prevMode) => !prevMode);
-          
           await fetchEditOneWishlist(userId, item.id);
         }}
         src={
@@ -38,7 +46,9 @@ export default function ItemsByCategory() {
         alt="Wishlist button"
       ></img>
     );
+      }
   };
+
 
   if (!isLoading) {
     return (
@@ -46,7 +56,7 @@ export default function ItemsByCategory() {
         {items.map((item) => (
           <Section key={item.id}>
             <Link to={`/itemInfo/${item.id}`}>
-              <SubHeading>
+              <SubHeading id={"item-title"}>
                 {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
               </SubHeading>
               <Image src={item.image} />
@@ -74,57 +84,62 @@ const Container = styled.section`
 `;
 
 const Section = styled.section`
-  background-color: white;
+  background-color: White;
   border-radius: 20px;
   width: 20vw;
-  height: 30vw;
+  height: 23vw;
   margin: 2vw 1vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   &:hover {
     transform: scale(1.06);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 `;
 
 const SubHeading = styled.h3`
-  font-size: 25px;
+  font-size: 28px;
   height: 5vw;
-  /* margin: 30px; */
+  margin-top: 30px;
+  margin-bottom: 0px;
+  text-align: center;
 `;
 
 const Image = styled.img`
-  /* width: 15vw; */
+  // width: 15vw;
   height: 10vw;
-  /* align-self: center; */
+  align-self: center;
+  border-radius: 10px;
 `;
 
 const PTag = styled.p`
   display: inline-block;
-  /* margin-left: 0;
-  margin-bottom: 0; */
-  font-size: 20px;
-  margin-top: 4vw;
+  margin-left: 0; 
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
 `;
 
 const Bottom = styled.div`
   justify-self: baseline;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
 `;
 
 const Wishlist = styled.button`
-  /* margin-top: -1.5vw; */
-  /* margin-right: 1.5vw; */
-  // width: fit-content;
-  /* align-self: flex-end; */
-  /* justify-self: flex-end; */
   border-style: none;
-  // color: White;
-  // border-radius: 20px;
   background-color: transparent;
+  cursor: pointer;
   width: 40px;
   height: 40px;
-  // &:hover {
-  //   background-color: #e07426;
-  // }
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
+

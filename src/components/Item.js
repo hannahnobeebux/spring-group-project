@@ -26,6 +26,11 @@ export default function Item() {
 
   const WishlistIcon = ({ item }) => {
     const [lightMode, setLightMode] = useState(wishlist.includes(item.id));
+    if(userId === null)
+    {
+      return;
+    }
+    else{
     return (
       <img
         onClick={async () => {
@@ -40,6 +45,7 @@ export default function Item() {
         alt="Wishlist button"
       ></img>
     );
+      }
   };
 
   // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
@@ -47,7 +53,7 @@ export default function Item() {
     return items.map((item) => (
       <Section key={item.id}>
         <Link to={`/itemInfo/${item.id}`}>
-          <SubHeading>
+          <SubHeading id={"item-title"}>
             {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
           </SubHeading>
 
@@ -63,63 +69,6 @@ export default function Item() {
     ));
   }
 }
-
-// const Section = styled.section`
-//   background-color: white;
-//   border-radius: 20px;
-//   width: 20vw;
-//   height: 25vw;
-//   margin: 2vw 1vw;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   transition: transform 0.3s ease-in-out;
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-//   &:hover {
-//     transform: scale(1.06);
-//   }
-// `;
-
-// const SubHeading = styled.h3`
-//   font-size: 28px;
-//   height: 5vw;
-//   /* margin: 30px; */
-// `;
-
-// const Image = styled.img`
-//   /* width: 15vw; */
-//   height: 10vw;
-//   /* align-self: center; */
-// `;
-
-// const PTag = styled.p`
-//   display: inline-block;
-//   /* margin-left: 0; 
-//   margin-bottom: 20px; */
-//   font-size: 25px;
-// `;
-
-// const Bottom = styled.div`
-//   justify-self: baseline;
-// `;
-
-// const Wishlist = styled.button`
-//   /* margin-top: -1.5vw; */
-//   /* margin-right: 1.5vw; */
-  
-//   // width: fit-content;
-//   /* align-self: flex-end; */
-//   /* justify-self: flex-end; */
-//   border-style: none;
-//   // color: White;
-//   // border-radius: 20px;
-//   background-color: transparent;
-//   width: 40px;
-//   height: 40px;
-//   // &:hover {
-//   //   background-color: #e07426;
-//   // }
-// `;
 
 const Section = styled.section`
   background-color: White;
@@ -181,6 +130,3 @@ const Wishlist = styled.button`
   }
 `;
 
-const WishlistIcon = styled.img`
-  
-`;

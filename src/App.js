@@ -16,6 +16,9 @@ import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm"
 import EditUser from "./components/EditUser"
 import UserItems from "./components/UserItems"
+import EditPassword from "./components/EditPassword"
+import SellersItems from "./components/sellersItems";
+
 
 function App() {
   return (
@@ -35,8 +38,10 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/loggedIn" element={<LoggedInUser />} />
-        <Route path="/editUser/:id" element={<EditUser />} />
+        <Route path="/editUser" element={<EditUser />} />
+        <Route path="/user/password" element={<EditPassword/>} />
         <Route path="/userItems" element={<UserItems/>}/>
+        <Route path="/profile/:sellerId" element={<SellersItems/>}/>
       </Routes>
       <Footer />
     </div>
