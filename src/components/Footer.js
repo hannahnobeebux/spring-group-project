@@ -42,16 +42,17 @@ export default function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  background-color: #709fb0;
+  /* background-color: #709fb0; */
+  background-color: #66806A;
   color: white;
   text-align: center;
   padding: 10px;
   margin: 0;
-  margin-top: 1rem;
   bottom: 0;
   left: 0%;
-  width: 98.2vw;
+  width: 100%;
   font-weight: bold;
+margin-top: auto;
 
   .footer-content {
     display: flex;
@@ -71,7 +72,7 @@ const StyledFooter = styled.footer`
       transition: all 0.3s;
 
       &:hover {
-        color: #61dafb;
+        color: #FF7956;
       }
     }
   }
@@ -86,7 +87,7 @@ const StyledFooter = styled.footer`
       transition: all 0.3s;
   
       &:hover {
-        color: #61dafb;
+        color: #FF7956;
       }
     }
   }

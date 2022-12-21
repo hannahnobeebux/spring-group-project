@@ -49,7 +49,7 @@ export default function SearchResults() {
     <div>
       <form onSubmit={ handleSubmit(onSubmit)}>
         <h2>Search {queryInput}</h2>
-        <Input {...register("query")} placeholder="query" onChange={handleChange}/>
+        <Input {...register("query")} placeholder="Search for an item.." onChange={handleChange}/>
         <p>{errors.query?.message}</p>
         <Submit type="submit" />
       </form>
