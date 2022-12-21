@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "../App.css";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
+import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 
 export default function NavBar() {
+  const [email, setEmail] = useState("")
   // const [categories, setCategories] = useState();
   // const [isLoading, setIsLoading] = useState(true);
 
@@ -16,6 +18,19 @@ export default function NavBar() {
     "Toys",
     "Technology",
   ];
+
+  async function fetchAuthenticated() {
+    const isAuthenticated = await checkIfUserIsAuthenticated();
+    
+    if (isAuthenticated == null) {
+      setEmail('/login')
+    } else {
+      setEmail('/wishlist')
+    }
+  }
+  useEffect(() => {
+    fetchAuthenticated()
+  }, []);
 
   // useEffect(() => {
   //   async function fetchCategories() {
@@ -46,7 +61,7 @@ export default function NavBar() {
       </Categorynav>
       <nav>
         <ATag href={"/addItem"}>Add new item</ATag>
-        <ATag href={"/wishlist"}>View wishlist</ATag>
+        <ATag href={email}>View wishlist</ATag>
       </nav>
     </Nav>
   );

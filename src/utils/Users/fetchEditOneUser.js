@@ -1,18 +1,27 @@
 export default async function fetchEditOneUser(user) {
+  for (const key in user) {
+    if (user[key] === "") {
+      delete user[key];
+    }
+  }
   try {
+    const accessToken = localStorage.getItem('access_token');
+    const userId = localStorage.getItem('user_id');
+    console.log(user)
     const response = await fetch(
-      `http://localhost:8080/shop/User${user.userId}`,
+      `http://localhost:8080/shop/user/${userId}`,
       {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: user.firstname,
-          lastName: user.lastname,
-          password: user.password,
-          emailAddress: user.emailAddress,
-        }),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${accessToken}`,
+      
+      },
+        body: JSON.stringify(user),
       }
     );
+    console.log(await response.text())
+    console.log(response.status)
     const data = await response.json();
     if (response.status === 200) {
     } else {
@@ -23,6 +32,9 @@ export default async function fetchEditOneUser(user) {
       alert(data.message);
     }
   } catch (error) {
-    alert(error.message);
+    console.log('hi');
+    console.log(error.message);
+
+    // alert(error.message);
   }
 }

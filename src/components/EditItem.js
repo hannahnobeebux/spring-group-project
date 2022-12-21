@@ -24,6 +24,11 @@ export default function EditItem() {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //  async function 
+  // }, [])
+  
+
   async function onSubmit(data) {
     await fetchEditOneItem(data);
     navigate(`/itemInfo/${id}`);

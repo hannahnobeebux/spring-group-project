@@ -13,6 +13,7 @@ import Users from "./components/Users";
 import LoggedInUser from "./components/LoggedInUser";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm"
+import EditUser from "./components/EditUser"
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/loggedIn" element={<LoggedInUser />} />
+        <Route path="/editUser/:id" element={<EditUser />} />
       </Routes>
       <Footer />
     </div>

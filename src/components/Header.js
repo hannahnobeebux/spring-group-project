@@ -14,11 +14,12 @@ export default function Header() {
   async function fetchAuthenticated() {
   const isAuthenticated = await checkIfUserIsAuthenticated();
   
-  if(isAuthenticated == null) {
-    return navigate('/login')
+  if (isAuthenticated == null) {
+    setEmail('Login')
+  } else {
+    const userData = isAuthenticated;
+    setEmail(userData.emailAddress)
   }
-  const userData = isAuthenticated;
-  setEmail(userData.emailAddress)
 }
 useEffect(() => {
   fetchAuthenticated()

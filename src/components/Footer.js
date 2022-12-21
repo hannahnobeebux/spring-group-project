@@ -11,27 +11,27 @@ export default function Footer() {
   crossOrigin="anonymous"
 />
 
-      <div class="footer-content">
+      <div className="footer-content">
         <p>Created by Hannah, Vicky, Tyrese, Michael, Omar.</p>
-        <div class="social-links">
+        <div className="social-links">
           <a href="#" target="_blank">
-            <i class="fab fa-twitter"></i>
+            <i className="fab fa-twitter"></i>
           </a>
           <a href="#" target="_blank">
-            <i class="fab fa-facebook-f"></i>
+            <i className="fab fa-facebook-f"></i>
           </a>
           <a href="#" target="_blank">
-            <i class="fab fa-instagram"></i>
+            <i className="fab fa-instagram"></i>
           </a>
           <a href="#" target="_blank">
-            <i class="fab fa-linkedin-in"></i>
+            <i className="fab fa-linkedin-in"></i>
           </a>
           <a href="#" target="_blank">
-            <i class="fab fa-github"></i>
+            <i className="fab fa-github"></i>
           </a>
         </div>
       </div>
-      <div class="footer-links">
+      <div className="footer-links">
         <a href="mailto:example@example.com">Contact Us</a>
         <a href="#">Track Orders</a>
         <a href="#">Return Item</a>

@@ -34,6 +34,7 @@ export default function LoginForm() {
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("token_type", tokenType);
         navigate("/loggedIn");
+        
         return;
       }
     } catch (error) {
@@ -58,6 +59,7 @@ export default function LoginForm() {
         ></Input>
         <Submit type="submit">Login</Submit>
       </form>
+      <a href="/register">Don't have an account, register here!</a>
 
 </div>
 )

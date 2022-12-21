@@ -39,7 +39,8 @@ export default async function checkIfUserIsAuthenticated() {
       return null
     } else {
       if (data.errors !== undefined) {
-        alert(data.errors[0].msg);
+        alert('User is not authenticated')
+        console.log(data.errors[0].msg);
         removeUserFromLocalStorage()
         return null;
       }
