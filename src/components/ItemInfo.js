@@ -199,7 +199,7 @@ export default function ItemInfo() {
           
           </>
           ) : null }
-          <ReviewCreate />
+          <ReviewCreate  itemId={id}/>
           <h2>Current Reviews</h2>
           <Reviews />
         </InfoSection>

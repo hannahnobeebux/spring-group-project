@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+import fetchAddReview from "../utils/Items/fetchAddReview";
+
+
 //
 
 // Each item can have a review 
@@ -26,8 +29,12 @@ export default function ReviewCreate(props) {
         const userId = localStorage.getItem('user_id')
         if(userId == null) {
             console.log("You are not logged in")
+            alert("You must be logged in to post a review")
+            return
         }else{
-            console.log("Not logged in")
+            console.log("You are logged in")
+            console.log(itemId)
+            await fetchAddReview(itemId, userId, data)
         }
         // const results = await fetchGetSearchItems(data.query);
         // if(results?.length > 0) {
