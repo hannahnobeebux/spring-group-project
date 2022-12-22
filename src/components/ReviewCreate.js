@@ -23,7 +23,12 @@ export default function ReviewCreate(props) {
     });
 
     async function onSubmit(data) {
-        console.log(data);
+        const userId = localStorage.getItem('user_id')
+        if(userId == null) {
+            console.log("You are not logged in")
+        }else{
+            console.log("Not logged in")
+        }
         // const results = await fetchGetSearchItems(data.query);
         // if(results?.length > 0) {
         //     setSearchResults(results)

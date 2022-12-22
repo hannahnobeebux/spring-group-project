@@ -118,7 +118,6 @@ const Section = styled.section`
   }
 
   @media (min-width: 1025px) and (max-width: 1999px){
-    background-color: blue;
     width: 30vw;
   }
 `;

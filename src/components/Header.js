@@ -70,16 +70,20 @@ const HeaderContainer = styled.div`
   /* PHONES */
   @media(max-width: 480px){
     background-color: white;
-    margin-bottom: 10px;
+    height: 10vw;
+    /* margin-bottom: 10px; */
   }
 
   /* TABLETS */
   @media (min-width: 481px) and (max-width:1024px){
     background-color: white;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    height: 7vw;
 }
 
-
+@media (min-width: 1025px) and (max-width: 1999) {
+  height: 5vw;
+}
 `;
 
 const HeaderOne = styled.a`
@@ -154,6 +158,7 @@ const Img = styled.img`
 `;
 
 const Trolley = styled.img`
+margin-left: 0px;
 height: 3vw;
 `;
 

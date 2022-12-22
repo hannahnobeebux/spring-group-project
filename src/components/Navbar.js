@@ -104,17 +104,20 @@ const Nav = styled.div`
     /* TESTING */
     /* background-color: red; */
     /* margin-top: 30px; */
-   
+   justify-content: center;
   }
 
   @media (min-width: 481px) and (max-width:1024px){
-    flex-direction: column; 
+    flex-direction: row; 
+    flex-wrap: wrap;
     max-width: 100%;
     margin-left:0;
     /* TESTING */
     /* background-color: red; */
 
     /* margin-top: 30px; */
+    justify-content: center;
+
   }
 
   @media (min-width: 0px) and (max-width: 479px){

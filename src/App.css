@@ -162,6 +162,36 @@ a:hover {
   body{
     margin:0;
   }
+
+  #a-tag-1{
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  #a-tag-2{
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  #a-tag-3{
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  #a-tag-4{
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  #a-tag-5{
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  #dropdown-basic-button{
+    font-size: 10px;
+    padding: 5px;
+  }
 }
 
 /*Mobile*/
@@ -189,26 +219,37 @@ a:hover {
   }
   #a-tag-4{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-3{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-5{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-2{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-1{
     font-size: 10px;
+    padding: 5px;
   }
 
   #dropdown-basic-button{
     font-size: 10px;
+    padding: 5px;
+  }
+
+  .user-svg{
+    width: 5px;
+    height: 5px;
   }
   
 
@@ -250,26 +291,37 @@ a:hover {
 
   #a-tag-4{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-3{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-5{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-2{
     font-size: 10px;
+    padding: 5px;
   }
 
   #a-tag-1{
     font-size: 10px;
+    padding: 5px;
   }
 
   #dropdown-basic-button{
     font-size: 10px;
+    padding: 5px;
+  }
+
+  .user-svg{
+    width: 5px;
+    height: 5px;
   }
 }
 

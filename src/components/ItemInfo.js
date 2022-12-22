@@ -66,6 +66,8 @@ export default function ItemInfo() {
 
     fetchItemUser();
     fetchOneItem();
+
+    getReviews();
     
   }, [id]);
 
@@ -114,19 +116,20 @@ export default function ItemInfo() {
 
 
   async function getReviews () {
-    const reviewData = await fetchGetReviews()
+    const reviewData = await fetchGetReviews(id)
+    console.log(reviewData)
     setReviews(reviewData)
   }
-  // const Reviews = () => {
-  //   return (
-  //     <section>
-  //       {reviews.map(reviewData => {
-  //         <Review />
-  //       })}
-  //     </section>
-  //   )
+  const Reviews = () => {
+    return (
+      <section id="reviews">
+        {reviews.map(review => {
+          return (<Review reviewData={review} />)
+        })}
+      </section>
+    )
     
-  // }
+  }
 
 
 
@@ -136,7 +139,9 @@ export default function ItemInfo() {
         <SubHeading>
           {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
         </SubHeading>
+        
         <Image src={item.image} />
+        
           
         <InfoSection>
           <SubTitleTag>
@@ -195,6 +200,8 @@ export default function ItemInfo() {
           </>
           ) : null }
           <ReviewCreate />
+          <h2>Current Reviews</h2>
+          <Reviews />
         </InfoSection>
       </ItemSection>
     );

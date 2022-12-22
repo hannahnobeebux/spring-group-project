@@ -8,34 +8,33 @@ import WishlistItem from "./WishlistItem";
 export default function Basket() {
   const [userShopping, setUserShopping] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  //const [userShoppingId, setUserShoppingId] = useState();
   let userIdTest = localStorage.getItem("user_id")
   userIdTest = parseInt(userIdTest);
 
-  const [totalCost, setTotalCost] = useState(0);
+  const [totalCost, setTotalCost] = useState(0.00);
 
+
+  
   useEffect(() => {
+    const calculateTotalCost = async (data) => {
+        setUserShopping(data);
+        let total = 0.00;
+        for (let itemId of data) {
+          const item = await fetchGetOneItem(itemId);
+          total += item.price;
+        }
+        setTotalCost(total);
+    };
+
+
     async function fetchData() {
       const userId = localStorage.getItem('user_id')
-      //await setUserShoppingId(userId);
       const data = await fetchGetOneUserBasket(userId);
-      console.log(data)
-      await setUserShopping(data);
-
-      const calculateTotalCost = async () => {
-        if (userShopping) {
-          let total = 0;
-          for (const itemId of userShopping) {
-            const item = await fetchGetOneItem(itemId);
-            total += Number(item.price);
-          }
-          setTotalCost(total);
-        }
-      };
-
-      calculateTotalCost();
-      setIsLoading(false);
+      if(data){
+        calculateTotalCost(data);
+      } 
     }
+      setIsLoading(false);
     fetchData();
   }, []);
 

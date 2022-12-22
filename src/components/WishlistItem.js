@@ -80,6 +80,19 @@ const SubHeading = styled.h3`
   margin-top: 30px;
   margin-bottom: 0px;
   text-align: center;
+
+  @media(max-width: 480px){
+    font-size: 3.5vw;
+    /* display: block; */
+    width: 100%:
+    height: 50px;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999) {
+  
+  }
 `;
 
 const Image = styled.img`
@@ -87,6 +100,15 @@ const Image = styled.img`
   height: 10vw;
   align-self: center;
   border-radius: 10px;
+
+  @media(max-width: 480px){
+    height: 10vw;
+    // margin-top: 20px;
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+    height: 10vw;
+  }
 `;
 
 const PTag = styled.p`
@@ -95,6 +117,18 @@ const PTag = styled.p`
   margin-bottom: 20px;
   font-size: 25px;
   font-weight: bold;
+
+  @media(max-width: 480px){
+    font-size: 3vw;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+    font-size: 3vw;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
 `;
 
 const Bottom = styled.div`

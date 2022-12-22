@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Review (props) {
     const {reviewData} = props;
+    console.log(reviewData.reviewText)
     return (<div>
-        
+            <p>{reviewData.reviewValue}</p>
+            <p>{reviewData.reviewText}</p>
         </div>)
 }
