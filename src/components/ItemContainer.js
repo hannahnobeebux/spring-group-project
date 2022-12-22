@@ -18,4 +18,19 @@ const Section = styled.section`
   flex-wrap: wrap;
   justify-content: center;
   // overflow: hidden;
+
+  @media(max-width:480px) {
+    padding: 20px;
+    flex-direction: column;
+    flex-wrap: none;
+    align-items: center;
+  }
+
+  @media(min-width: 481px) and (max-width:1024px) {
+    padding: 20px;
+    /* flex-direction: column;
+    flex-wrap: none;
+    align-items: center; */
+  }
+  
 `;

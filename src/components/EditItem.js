@@ -61,7 +61,7 @@ export default function EditItem() {
           <option value="Technology">Technology</option>
         </Select>
         <p>{errors.category?.message}</p>
-        <Input min="1" type="number" {...register("quantity")} placeholder="Quantity" />
+        <Input min="0" type="number" {...register("quantity")} placeholder="Quantity" />
         <p>{errors.quantity?.message}</p>
         <Input min="0.01" step="0.01" type="number" {...register("price")} placeholder="Price" />
         <p>{errors.price?.message}</p>

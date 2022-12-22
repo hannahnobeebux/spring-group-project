@@ -18,6 +18,8 @@ import EditUser from "./components/EditUser"
 import UserItems from "./components/UserItems"
 import EditPassword from "./components/EditPassword"
 import SellersItems from "./components/sellersItems";
+import Basket from "./components/Basket";
+import EditUserEmail from "./components/EditUserEmail";
 
 
 function App() {
@@ -39,9 +41,11 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/loggedIn" element={<LoggedInUser />} />
         <Route path="/editUser" element={<EditUser />} />
+        <Route path="/user/email" element={<EditUserEmail />} />
         <Route path="/user/password" element={<EditPassword/>} />
         <Route path="/userItems" element={<UserItems/>}/>
         <Route path="/profile/:sellerId" element={<SellersItems/>}/>
+        <Route path="/basket" element={<Basket/>}/>
       </Routes>
       <Footer />
     </div>

@@ -6,6 +6,9 @@ import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticate
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import { set } from "react-hook-form";
 
+// FOR MEDIA QUERIES 
+import { Device } from './Device';
+
 
 export default function NavBar() {
   const [wishlist, setWishlist] = useState("")
@@ -92,6 +95,38 @@ const Nav = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 480px){
+    flex-direction: row; 
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-left:0;
+    /* TESTING */
+    /* background-color: red; */
+    /* margin-top: 30px; */
+   
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+    flex-direction: column; 
+    max-width: 100%;
+    margin-left:0;
+    /* TESTING */
+    /* background-color: red; */
+
+    /* margin-top: 30px; */
+  }
+
+  @media (min-width: 0px) and (max-width: 479px){
+    flex-direction: row; 
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-left:0;
+    /* TESTING */
+    /* background-color: red; */
+
+    /* margin-top: 30px; */
+  }
 `;
 
 const ATag = styled.a`
@@ -111,6 +146,8 @@ const ATag = styled.a`
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
     transform: translateY(-3px);
   }
+
+
 `;
 
 

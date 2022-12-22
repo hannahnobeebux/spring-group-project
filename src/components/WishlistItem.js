@@ -36,7 +36,7 @@ export default function WishlistItem({ Item }) {
 
 // Styling
 const Section = styled.section`
-  background-color: White;
+  background-color: white;
   border-radius: 20px;
   width: 20vw;
   height: 23vw;
@@ -49,6 +49,28 @@ const Section = styled.section`
   &:hover {
     transform: scale(1.06);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  @media(max-width:480px) {
+    padding: 10px;
+    margin-right: 10px;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    width: 50vw;
+    height: 30vw;
+    
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+    padding: 20px;
+   width: 40vw;
+   height: 30vw;
+   
+   flex-direction: row;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999px){
+    width: 30vw;
   }
 `;
 

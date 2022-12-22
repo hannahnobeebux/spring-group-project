@@ -32,7 +32,7 @@ export default function LoggedInUser() {
     navigate(`/editUser`)
   }
   async function editEmail() {
-    navigate(`/editUser/${userId}`)
+    navigate(`/user/email`)
   }
   async function editPassword() {
     navigate(`/user/password`)

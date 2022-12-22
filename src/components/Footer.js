@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+// FOR MEDIA QUERIES 
+import { Device } from './Device';
+
 export default function Footer() {
   return (
     <StyledFooter>
@@ -90,5 +93,10 @@ margin-top: auto;
         color: #FF7956;
       }
     }
+  }
+
+  @media ${Device.mobileS}{
+    /* background-color:green; */
+    width: 100%;
   }
 `;

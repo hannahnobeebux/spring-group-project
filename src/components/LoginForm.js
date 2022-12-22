@@ -6,7 +6,7 @@ export default function LoginForm() {
   // Make post request to auth server with email and password
   // Get token from server
   // Save token in local storage
-  //
+  
   const navigate = useNavigate();
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -36,6 +36,9 @@ export default function LoginForm() {
         localStorage.setItem("logged_in", "true")
         navigate("/loggedIn");
         return;
+      } else if(response.status == 401) {
+        console.log(await response.json())
+        alert('Incorrect username or password')
       }
     } catch (error) {
       console.log(error);
@@ -45,25 +48,30 @@ export default function LoginForm() {
   return (
     <div>
       <h1>Login Form!</h1>
-      <form onSubmit={onFormSubmit}>
-        <p>Email Address</p>
+      <Form onSubmit={onFormSubmit}>
+        <label>Email Address</label>
         <Input
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         ></Input>
-        <p>Password</p>
+        <label>Password</label>
         <Input
           type="password"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         ></Input>
         <Submit type="submit">Login</Submit>
-      </form>
+      </Form>
       <a href="/register">Don't have an account, register here!</a>
 
 </div>
 )
 }
+
+const Form = styled.form`
+  display: flex:
+  flex-direction: column;
+`;
 
 const Input = styled.input`
   width: 20vw;

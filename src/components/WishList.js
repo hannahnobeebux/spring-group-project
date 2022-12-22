@@ -45,4 +45,6 @@ const Section = styled.section`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  
 `;

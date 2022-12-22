@@ -56,7 +56,7 @@ export default function SearchResults() {
       <section>
         <Container>
         {searchResults.map((item) => {
-           return ( <p><SingleItem item={item}/></p>)
+           return ( <SingleItem item={item}/>)
         })}
         {/* Display search results here */}
         </Container>
@@ -108,6 +108,7 @@ const Container = styled.section`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
 `;
 
 const Section = styled.section`

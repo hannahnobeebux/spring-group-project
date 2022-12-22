@@ -107,6 +107,7 @@ a:hover {
 #simplishop-header:hover {
 
   color: #ffa372;
+
 }
 
 #a-tag-1:hover{
@@ -136,6 +137,142 @@ a:hover {
 #a-tag-email:hover{
   color: black;
 }
+
+/* MEDIA QUERIES */
+/*Desktop*/
+@media (min-width: 1025px){
+  #simplishop-header {
+    font-size: 5vw;
+   
+  }
+  
+}
+
+/*Tablet*/
+@media (min-width: 481px) and (max-width:1024px){
+  #simplishop-header {
+    font-size: 5vw;
+    color: #ffa372;
+  }
+
+  #a-tag-email{
+    display: none;
+  }
+
+  body{
+    margin:0;
+  }
+}
+
+/*Mobile*/
+/* REFERENCING ID's */
+@media(max-width: 480px){
+  /* NAVBAR SIZE IN A COLUMN  */
+
+
+  /* ITEMS IN A COLUMNN */
+
+  /* HEADER IS SMALLER */
+  #simplishop-header {
+    font-size: 50px;
+    color: #ffa372;
+  }
+
+  #a-tag-email{
+    /* padding-right: 15px;
+    flex-direction: column; */
+    display: inline-block;
+    float: none;
+
+    /* background-color: red; */
+    display: none;
+  }
+  #a-tag-4{
+    font-size: 10px;
+  }
+
+  #a-tag-3{
+    font-size: 10px;
+  }
+
+  #a-tag-5{
+    font-size: 10px;
+  }
+
+  #a-tag-2{
+    font-size: 10px;
+  }
+
+  #a-tag-1{
+    font-size: 10px;
+  }
+
+  #dropdown-basic-button{
+    font-size: 10px;
+  }
+  
+
+  body{
+    margin:0;
+    /* background-color: blue; */
+  }
+
+  /* ACCOUNT GETS PUSHED */
+
+  /* FOOTER IS SMALLER */
+  /* .footer{
+    width: 100%; 
+   margin-bottom: 0;
+  } */
+
+
+
+  /* #itemSection img{
+    size: 10px;
+    margin:0;
+  } */
+}
+
+
+@media (min-width: 0px) and (max-width: 479px) {
+  #simplishop-header {
+    font-size: 25px;
+    color: #ffa372;
+  }
+
+  #a-tag-email{
+    display: none;
+  }
+
+  body{
+    margin:0;
+  }
+
+  #a-tag-4{
+    font-size: 10px;
+  }
+
+  #a-tag-3{
+    font-size: 10px;
+  }
+
+  #a-tag-5{
+    font-size: 10px;
+  }
+
+  #a-tag-2{
+    font-size: 10px;
+  }
+
+  #a-tag-1{
+    font-size: 10px;
+  }
+
+  #dropdown-basic-button{
+    font-size: 10px;
+  }
+}
+
 
 
  

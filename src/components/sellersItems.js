@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import fetchGetAllItemsByUser from "../utils/Items/fetchGetAllItemsByUser";
+import fetchgetAllUnknownItems from "../utils/Items/fetchGetAllUnknownItems";
+import SingleItem from "./SingleItem";
 import WishlistItem from "./WishlistItem";
 
 export default function SellersItems() {
@@ -10,13 +12,21 @@ export default function SellersItems() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { sellerId } = useParams()
-
+  let data;
+  let userName;
   useEffect(() => {
     async function fetchData() {
-      console.log(sellerId);
       const userId = localStorage.getItem('user_id')
-      const data = await fetchGetAllItemsByUser(sellerId);
-      const userName = await(await fetch(`http://localhost:8080/shop/user/${sellerId}`)).json();
+
+      if(sellerId !== "null"){
+        data = await fetchGetAllItemsByUser(sellerId);
+        userName = await(await fetch(`http://localhost:8080/shop/user/${sellerId}`)).json();
+      } else {
+        data = await fetchgetAllUnknownItems()
+        userName = {firstName:"Simplishop",lastName:""};
+        console.log(data,userName);
+      }
+
       setSellersItems(data);
       setSellersName(userName);
       setIsLoading(false);
@@ -27,14 +37,17 @@ export default function SellersItems() {
 
   if (!isLoading) {
     return (
+      <>
       <Container>
         <h1>{sellerName.firstName} {sellerName.lastName}'s Items</h1>
-        <Section>
-          {sellersItems?.map((item) => (
-            <WishlistItem Item={item.id} />
-          ))}
-        </Section>
       </Container>
+      <Container>
+        {sellersItems.map((item) => {
+           return ( <p><SingleItem item={item}/></p>)
+        })}
+        {/* Display search results here */}
+      </Container>
+      </>
     );
   }
 }
@@ -43,12 +56,23 @@ export default function SellersItems() {
 
 const Container = styled.section`
   display: flex;
-  flex-direction: column;
-`;
-
-const Section = styled.section`
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+`;
+
+
+const Section = styled.section`
+  background-color: white;
+  border-radius: 20px;
+  width: 20vw;
+  height: 30vw;
+  margin: 2vw 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.06);
+  }
 `;

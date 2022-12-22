@@ -6,28 +6,38 @@ import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
 import fetchDeleteOneItem from "../utils/Items/fetchDeleteOneItem";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 import fetchGetUseridByItem from "../utils/Items/fetchGetUseridByItem";
+import fetchEditOneItemFromBasket from "../utils/Users/fetchEditOneItemFromBasket";
+import fetchGetOneUserBasket from "../utils/Users/fetchGetOneUserBasket";
+import fetchGetReviews from "../utils/Items/fetchGetReviews";
+import ReviewCreate from "../components/ReviewCreate";
+import Review from "../components/Review";
+import { Alert } from "react-bootstrap";
 
 export default function ItemInfo() {
   const [item, setItem] = useState();
   const [creator, setCreator] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [wishlist, setWishlist] = useState()
+  const [basket, setBasket] = useState([])
   const [userItem, setUserItem] = useState()
   const [userItemFetched, setUserItemFetched] = useState(false);
+  const [loggedIn, setLoggedIn] = useState()
+  const [reviews, setReviews] = useState()
 
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
-
   let userId = localStorage.getItem("user_id")
   userId = parseInt(userId);
 
 
   useEffect(() => {
+    setLoggedIn(localStorage.getItem("logged_in"))
     async function fetchOneItem() {
       const data = await fetchGetOneItem(id);
       if(userId){
         const wishList = await fetchGetOneUserWishlist(userId);
+        const basket = await fetchGetOneUserBasket(userId)
+        setBasket(basket)
         setWishlist(wishList);
       }
       setItem(data);
@@ -39,7 +49,7 @@ export default function ItemInfo() {
       const data = await fetchGetUseridByItem(id);
       if (data == null){
         setUserItem(null);
-        setCreator({firstName:"Unknown",lastName:""})
+        setCreator({firstName:"Simplishop",lastName:""})
       } else{
         setUserItem(data)
         fetchUser(data)
@@ -70,6 +80,56 @@ export default function ItemInfo() {
     navigate("/");
   }
 
+  const ShoppingIcon = ({ item }) => {
+    const [lightMode, setLightMode] = useState(basket.includes(item.id));
+    console.log(typeof userId)
+    console.log()
+    if(userId != localStorage.getItem("user_id"))
+    {
+      //alert("Not Logged in")
+      return;
+    }
+    else if(item.quantity <= 0)
+    {
+      alert("Sorry this item is out of stock :(")
+    }
+    else{
+    return (
+      <Img
+        onClick={async () => {
+          setLightMode((prevMode) => !prevMode);
+          fetchEditOneItemFromBasket(userId, item.id)
+          
+        }}
+        src={
+          lightMode
+            ? "https://www.svgrepo.com/show/185957/shopping-cart-remove.svg"
+            : "https://www.svgrepo.com/show/185955/shopping-cart-add.svg"
+        }
+        alt="Shopping button"
+      ></Img>
+    );
+      }
+  };
+
+
+  async function getReviews () {
+    const reviewData = await fetchGetReviews()
+    setReviews(reviewData)
+  }
+  // const Reviews = () => {
+  //   return (
+  //     <section>
+  //       {reviews.map(reviewData => {
+  //         <Review />
+  //       })}
+  //     </section>
+  //   )
+    
+  // }
+
+
+
   if (!isLoading) {
     return (
       <ItemSection>
@@ -77,6 +137,7 @@ export default function ItemInfo() {
           {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
         </SubHeading>
         <Image src={item.image} />
+          
         <InfoSection>
           <SubTitleTag>
             Category:{" "}
@@ -89,6 +150,11 @@ export default function ItemInfo() {
             Description: <br></br>
             {item.description}
           </PTag>
+            <ShoppingIcon item={item} />
+
+            
+
+
           {userId !== userItem ? (
             <Link
               id="Seller"
@@ -107,10 +173,12 @@ export default function ItemInfo() {
             >
               Seller: {creator.firstName} {creator.lastName}
             </Link>
+            
           )}
+          
           { userItemFetched && userId === userItem ? (
             <>
-
+           
           <Link
             id="edit-button"
             to={{
@@ -120,10 +188,13 @@ export default function ItemInfo() {
           >
             <EditButton>Edit item</EditButton>
           </Link>
+          
 
           <EditButton onClick={handleClick}>Delete item</EditButton>
+          
           </>
           ) : null }
+          <ReviewCreate />
         </InfoSection>
       </ItemSection>
     );
@@ -212,3 +283,6 @@ const EditButton = styled.button`
 `;
 
 
+const Img = styled.img`
+height: 3vw;
+`;
