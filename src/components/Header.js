@@ -6,18 +6,23 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 
+// FOR MEDIA QUERIES 
+import { Device } from './Device';
 
 export default function Header() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("")
+  const [basket, setBasket] = useState("")
   async function fetchAuthenticated() {
   const isAuthenticated = await checkIfUserIsAuthenticated();
   
   if (isAuthenticated == null) {
+    setBasket('Login')
     setEmail('Login')
   } else {
     const userData = isAuthenticated;
     setEmail(userData.emailAddress)
+    setBasket('/basket')
   }
 }
 useEffect(() => {
@@ -34,7 +39,8 @@ useEffect(() => {
       <Title>
         <HeaderOne href={"http://localhost:3000"} id={"simplishop-header"}>SimpliShop</HeaderOne>
       </Title>
-      <Login>
+      <Container>
+        <UserDetails>
         <Link to={"/loggedIn"}>
           <Button>
             <ReactSVG src={accountIcon} className="user-svg"/>
@@ -43,7 +49,12 @@ useEffect(() => {
         <Link to={"/loggedIn"}>
         <UserEmail id={"a-tag-email"}> {email}</UserEmail>
         </Link>
-      </Login>
+        </UserDetails>
+        <UserBasket>
+
+        <a href={basket}><Trolley src="https://www.svgrepo.com/show/185956/shopping-cart-cart.svg"></Trolley></a>
+        </UserBasket>
+      </Container>
     </HeaderContainer>
   );
 }
@@ -56,19 +67,32 @@ const HeaderContainer = styled.div`
   background-color: white;
   height: 15vh;
 
+  /* PHONES */
+  @media(max-width: 480px){
+    background-color: white;
+    margin-bottom: 10px;
+  }
+
+  /* TABLETS */
+  @media (min-width: 481px) and (max-width:1024px){
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+
 `;
 
 const HeaderOne = styled.a`
-  font-size: 5vw;
+  /* font-size: 5vw; */
   margin: 10px;
   color: #ffa372;
   font-weight: bold;
-  font-size: 100px;
-
+  font-size: 50vw;
   &:hover {
-
     color: #ffa372;
   }
+
+
 `;
 
 const Title = styled.div`
@@ -79,16 +103,33 @@ const Title = styled.div`
   z-index: 1;
 `;
 
-const Login = styled.div`
+const Container = styled.div`
   position: relative;
   top: 2vw;
   left: 75vw;
   z-index: 2;
   height: 6vw;
+  display: flex;
+  flex-direction: row;
+  width: 12vw;
+  justify-content: space-between;
+  align-content: center;
+`;
+
+const UserDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const UserBasket = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 const Button = styled.button`
-  background-color: white;
+  background-color: transparent;
   border: none;
   border-radius: 50px;
   transition: transform 0.3s ease-in-out;
@@ -111,3 +152,8 @@ const Img = styled.img`
   left: 2vw;
   top: -0.10vw;
 `;
+
+const Trolley = styled.img`
+height: 3vw;
+`;
+
