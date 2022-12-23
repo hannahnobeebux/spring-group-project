@@ -9,38 +9,29 @@ import { useNavigate } from "react-router-dom";
 // Only one user can add one review for item
 // Reviews are 1 to 5
 
-async function fetchUser(reviewId){
-    const data = await fetchGetOneUserByReview(reviewId)
-    const response = await fetch(`http://localhost:8080/shop/user/${data}`)
-     return response
-  }
-
-
 
 export default function Review (props) {
-    const [userName , setUserName] = useState()
+    const [userName , setUserName] = useState({})
     const {reviewData} = props;
 
-    async function fetchUser(reviewId){  
-        const response = await fetchGetOneUserByReview(reviewId)
-        let data = await fetch(`http://localhost:8080/shop/user/${response}`)
-        data = await data.json();
-        return data
-    }
+
 
     useEffect(() => {
-        console.log("hello");
-        const user = fetchUser(reviewData.id)
-        console.log(user);
-        setUserName(user);
-      }, []);
-
+        async function fetchUser(reviewId){  
+            const response = await fetchGetOneUserByReview(reviewId)
+            let data = await fetch(`http://localhost:8080/shop/user/${response}`)
+            data = await data.json();
+            setUserName(data);
+        }
+        fetchUser(reviewData.id)
+    }, []);
 
     return (<div>
-            <StyledText>Rating: {reviewData.reviewValue}</StyledText>
+            <StyledText>{userName.firstName} {userName.lastName}'s Review</StyledText>
+            <StyledDescription>Rating: {reviewData.reviewValue}</StyledDescription>
+
             <StyledDescription>{reviewData.reviewText}</StyledDescription>
-            <StyledDescription>{userName.firstName}</StyledDescription>
-            <StyledDescription>{userName.lastName}</StyledDescription>
+            
             
         </div>)
 }
@@ -48,10 +39,13 @@ export default function Review (props) {
 // Styling 
 
 const StyledText = styled.p`
-    font-size: 25px;
-    color: white;
-    font-style: italic; 
+    font-size: 1.5vw;
+    /* color: white; */
+    /* font-style: italic;  */
     font-weight: bold;
+
+    color: #66806A;
+
 
     @media(max-width:480px) {
         font-size: 5vw;
