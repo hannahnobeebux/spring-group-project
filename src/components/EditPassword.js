@@ -22,7 +22,6 @@ export default function EditPassword() {
   async function onSubmit(data) {
 
     // Do code here to update password
-    console.log(data)
 
     // If it was successful then redirect to /loggedIn page
     if(await fetchEditPassword(data)) navigate('/loggedIn')

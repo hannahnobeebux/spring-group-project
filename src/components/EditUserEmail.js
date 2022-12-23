@@ -19,8 +19,6 @@ export default function EditUserEmail() {
   const userId = localStorage.getItem('user_id')
 
   async function login(email, password){
-    console.log(email)
-    console.log(password)
     try {
       const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
@@ -36,8 +34,6 @@ export default function EditUserEmail() {
       });
       if (response.status === 200) {
         const { accessToken, tokenType } = await response.json();
-        console.log(accessToken);
-        console.log(tokenType);
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("token_type", tokenType);
         localStorage.setItem("logged_in", "true")

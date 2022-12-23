@@ -13,11 +13,11 @@ export default function DeleteItem() {
   });
   async function onSubmit(data) {
     const userId = localStorage.getItem('user_id')
-    console.log(data)
+    //console.log(data)
     await fetchEditOneWishlist(userId,data)
     await fetchDeleteOneItem(data);
   }
-  console.log(errors);
+  //console.log(errors);
 
   return (
     <>

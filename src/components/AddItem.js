@@ -25,7 +25,7 @@ export default function AddItem() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>Add a new item here:</h2>
+        <SubHeading>Add a new item here:</SubHeading>
         <Input1
           {...register("name", { required: "This is required" })}
           placeholder="Title"
@@ -74,6 +74,17 @@ export default function AddItem() {
 }
 
 // Styling
+
+
+
+const SubHeading = styled.h2`
+  font-family: "Roboto Condensed";
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  font-size: 40px;
+  text-align: center;
+  `;
 
 const Input1 = styled.input`
   width: 20vw;

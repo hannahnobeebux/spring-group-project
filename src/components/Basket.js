@@ -33,7 +33,7 @@ export default function Basket() {
       const userId = localStorage.getItem('user_id')
       const data = await fetchGetOneUserBasket(userId);
       setBasketItems(data)
-      console.log(data)
+
       if(data){
         calculateTotalCost(data);
       } 
