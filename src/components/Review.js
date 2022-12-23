@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
 // Reviews are 1 to 5
 
 async function fetchUser(reviewId){
-    const response = await fetchGetOneUserByReview(reviewId)
-    const data = await response.json();
+    const data = await fetchGetOneUserByReview(reviewId)
      return data
   }
 
