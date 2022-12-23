@@ -26,17 +26,26 @@ export default function Review (props) {
         fetchUser(reviewData.id)
     }, []);
 
-    return (<div>
+    return (<StyledDiv>
             <StyledText>{userName.firstName} {userName.lastName}'s Review: </StyledText>
             <StyledDescription>Rating: {reviewData.reviewValue}</StyledDescription>
 
             <StyledDescription>{reviewData.reviewText}</StyledDescription>
             
             
-        </div>)
+        </StyledDiv>
+        )
 }
 
 // Styling 
+
+const StyledDiv = styled.div`
+    border-color: #66806A; 
+    border-style: solid;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+`
 
 const StyledText = styled.p`
     font-size: 1.5vw;

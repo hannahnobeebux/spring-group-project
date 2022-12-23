@@ -119,8 +119,8 @@ export default function SearchResults() {
       </form>
       <section>
         <Container>
-        {sorted.map((item) => {
-           return ( <SingleItem item={item}/>)
+        {sorted.map((item, index) => {
+           return ( <SingleItem item={item} key={index}/>)
         })}
         {/* Display search results here */}
         </Container>

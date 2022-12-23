@@ -84,8 +84,6 @@ export default function ItemInfo() {
 
   const ShoppingIcon = ({ item }) => {
     const [lightMode, setLightMode] = useState(basket.includes(item.id));
-    console.log(typeof userId)
-    console.log()
     if(userId != localStorage.getItem("user_id"))
     {
       //alert("Not Logged in")
@@ -117,7 +115,6 @@ export default function ItemInfo() {
 
   async function getReviews () {
     const reviewData = await fetchGetReviews(id)
-    console.log(reviewData)
     setReviews(reviewData)
   }
   const Reviews = () => {
@@ -168,7 +165,7 @@ export default function ItemInfo() {
                 pathname: `/profile/${userItem}`,
               }}
             >
-              Seller: {creator.firstName} {creator.lastName}
+              Seller: {creator?.firstName} {creator?.lastName}
             </Link>
             <ReviewCreate  itemId={id} />
             </>
@@ -179,7 +176,7 @@ export default function ItemInfo() {
                 pathname: `/userItems`,
               }}
             >
-              Seller: {creator.firstName} {creator.lastName}
+              Seller: {creator?.firstName} {creator?.lastName}
             </Link>
             
           )}
