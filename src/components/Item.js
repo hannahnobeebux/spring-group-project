@@ -107,8 +107,8 @@ export default function Item() {
 
   // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
   if (!isLoading) {
-    return(items.map((item) => (
-      <div>
+    return(<div>items.map((item) => (
+      
         <SortForm onChange={handleSortChange} />
       <Section id={"itemSection"} key={item.id}>
         <Link to={`/itemInfo/${item.id}`}>
@@ -128,8 +128,9 @@ export default function Item() {
           </Wishlist>
         </Bottom>
       </Section>
-      </div>
+      
     ));
+    </div>
     )
   }
 }
