@@ -54,14 +54,17 @@ export default function LoggedInUser() {
       <StyledH3>Welcome <i><strong>{firstName} {lastName}</strong></i>! </StyledH3>
       {/* <StyledH3>{lastName}</StyledH3> */}
       <StyledH3>Your email: <strong>{email}</strong></StyledH3>
+      <div>
       <Submit onClick={editDetails}>Edit details</Submit>
       <Submit onClick={editEmail}>Edit email</Submit>
       <Submit onClick={editPassword}>Edit password</Submit>
       <Submit onClick={logout}>Log out</Submit>
+      </div>
     </Section>
   );
 }
 
+//Styl
 const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -120,5 +123,19 @@ align-self: center;
   background-color: #FF7956;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
+}
+
+@media(max-width:480px) {
+ font-size: 3vw;
+ width: 18vw;
+  padding: 2vw;
+}
+
+@media (min-width: 481px) and (max-width:1024px){
+ 
+}
+
+@media (min-width: 1025px) and (max-width: 1999px){
+  
 }
 `;
