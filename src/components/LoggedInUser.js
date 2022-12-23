@@ -110,7 +110,7 @@ border-radius: 10px;
 border: 1px solid #FF7800;
 color: white;
 font-weight: bold;
-font-size: 20px;
+font-size: 1.2vw;
 position: relative;
 overflow: hidden;
 transition: all 0.3s ease;

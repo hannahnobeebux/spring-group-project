@@ -37,6 +37,9 @@ export default function RegisterForm() {
         navigate("/login");
         return;
       }
+      else{
+        alert('Email is already taken!')
+      }
     } catch (error) {
       console.log(error);
       alert(error.message);
@@ -78,6 +81,7 @@ export default function RegisterForm() {
         
         <Submit type="submit">Register</Submit>
       </form>
+      <RegisterLink href="/login">Have an account? Log in here!</RegisterLink>
 </div>
 )
 }
@@ -115,4 +119,7 @@ transition: all 0.3s ease;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }
-`;
+`;const RegisterLink = styled.a`
+color: #0000EE; 
+font-weight: bold; 
+`

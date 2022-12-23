@@ -10,13 +10,14 @@ export default function SearchResults() {
 
     const [searchResults, setSearchResults] = useState([]);
     const [queryInput, setQueryInput] = useState("")
+    const [sortInput, setSortInput] = useState("")
+    const [sorted, setSorted] = useState([])
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm({
         defaultValues: {
-        query: "",
         },
     });
 
@@ -38,8 +39,59 @@ export default function SearchResults() {
     if(queryInput.length < 0) return;
     const results = await fetchGetSearchItems(queryInput);
     if (results?.length <= 0) return;
-    setSearchResults(results)
-    setQueryInput()
+    sortItems(results)
+    setSearchResults(results, sortInput)
+    // setQueryInput()
+  }
+
+  async function handleSortChange(e) {
+    const sort = e.target.value;
+    sortItems(searchResults, sort)
+    setSortInput(sort)
+  }
+
+  async function sortItems(items, sortOption) {
+    // console.log(items)
+    console.log(sortOption)
+    
+    const sortedItems = [...items].sort((a, b) => {
+      switch (sortOption) {
+        // name low to high
+        case "az":
+          return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
+
+          
+          
+          break;
+        // Name high to low
+        case "za":
+          return a.name.toUpperCase() <  b.name.toUpperCase() ? 1 : -1;
+          break;
+        // Price high to low
+        case "expensive":
+          return b.price - a.price
+          break;
+        // Price low to high
+        case "cheap":
+          return a.price - b.price
+          
+          break;
+        
+        // Stock high to low
+        case "quantity":
+            return b.quantity - a.quantity
+          break;
+      
+        // Nothing
+        default:
+          return;
+          break;
+      }
+    })
+    // console.log(sortedItems.length)
+    // console.log(sortedItems)
+    // return sortedItems;
+    setSorted(sortedItems);
   }
 
 
@@ -50,12 +102,24 @@ export default function SearchResults() {
       <form onSubmit={ handleSubmit(onSubmit)}>
         <h2>Search {queryInput}</h2>
         <Input {...register("query")} placeholder="Search for an item.." onChange={handleChange}/>
+        <Select
+          {...register("sort", { required: "This is required" })}
+          placeholder="Sort by" onChange={handleSortChange}
+        >
+          <option value="default">Sort by: Default</option>
+          <option value="az">A ➡️ Z</option>
+          <option value="za">Z ➡️ A</option>
+          <option value="expensive">Most Expensive 🤑</option>
+          <option value="cheap">Cheapest 💸</option>
+          <option value="quantity">Quantity 📦</option>
+        </Select>
+        <p>{errors.sort?.message}</p>
         <p>{errors.query?.message}</p>
         <Submit type="submit" />
       </form>
       <section>
         <Container>
-        {searchResults.map((item) => {
+        {sorted.map((item) => {
            return ( <SingleItem item={item}/>)
         })}
         {/* Display search results here */}
@@ -75,6 +139,9 @@ const Input = styled.input`
   font-size: 16px;
   padding: 3px;
   transition: all 0.3s ease;
+
+  margin: 50px;
+
 
   &:focus {
     border-color: #333;
@@ -101,6 +168,23 @@ transition: all 0.3s ease;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }
+`;
+const Select = styled.select`
+  width: 10vw;
+  height: 2vw;
+  border-radius: 10px;
+  margin-top: 1vw;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 3px;
+  transition: all 0.3s ease;
+
+  margin: 25px;
+
+  &:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 `;
 
 const Container = styled.section`

@@ -15,6 +15,7 @@ export default function NavBar() {
   const [userItems, setUserItems] = useState("")
   const [addItems, setAddItems] = useState("")
   const [showMenu, setShowMenu] = useState();
+  const [basket, setBasket] = useState("")
   // const [isLoading, setIsLoading] = useState(true);
 
   const catArray = [
@@ -34,10 +35,12 @@ export default function NavBar() {
       setWishlist('/login')
       setUserItems('/login')
       setAddItems('/login')
+      setBasket('/login')
     } else {
       setWishlist('/wishlist')
       setUserItems('/userItems')
       setAddItems('/addItem')
+      setBasket('/basket')
     }
   }
   useEffect(() => {
@@ -79,6 +82,7 @@ export default function NavBar() {
         <ATag href={userItems} id={"a-tag-1"}>Your Items</ATag>
         <ATag href={addItems} id={"a-tag-2"} >Add new item</ATag>
         <ATag href={wishlist} id={"a-tag-3"} >View wishlist</ATag>
+        <a href={basket}><Trolley src="https://www.svgrepo.com/show/185956/shopping-cart-cart.svg"></Trolley></a>
       </Nav>
     </Nav>
   );
@@ -153,6 +157,11 @@ const ATag = styled.a`
 
 `;
 
+
+const Trolley = styled.img`
+margin-right: 0.5vw; 
+height: 3vw;
+`;
 
 
 

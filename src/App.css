@@ -138,6 +138,11 @@ a:hover {
   color: black;
 }
 
+#Seller{
+  color: #66806A;
+  font-weight: bold;
+}
+
 /* MEDIA QUERIES */
 /*Desktop*/
 @media (min-width: 1025px){

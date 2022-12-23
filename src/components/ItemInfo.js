@@ -121,6 +121,9 @@ export default function ItemInfo() {
     setReviews(reviewData)
   }
   const Reviews = () => {
+    if(!reviews){
+      return null
+    } else{
     return (
       <section id="reviews">
         {reviews.map(review => {
@@ -128,6 +131,7 @@ export default function ItemInfo() {
         })}
       </section>
     )
+      }
     
   }
 
@@ -150,17 +154,18 @@ export default function ItemInfo() {
           </SubTitleTag>
 
           <PTag>£{item.price}</PTag>
-          <PTag>Quantity: {item.quantity}</PTag>
+          <PTag>Stock: {item.quantity}</PTag>
           <PTag>
             Description: <br></br>
             {item.description}
           </PTag>
-            <ShoppingIcon item={item} />
 
             
 
 
           {userId !== userItem ? (
+            <>
+            <ShoppingIcon item={item} />
             <Link
               id="Seller"
               to={{
@@ -169,6 +174,7 @@ export default function ItemInfo() {
             >
               Seller: {creator.firstName} {creator.lastName}
             </Link>
+            </>
           ) : (
             <Link
               id="Seller"
@@ -181,7 +187,7 @@ export default function ItemInfo() {
             
           )}
           
-          { userItemFetched && userId === userItem ? (
+          {userId === userItem ? (
             <>
            
           <Link
@@ -198,10 +204,12 @@ export default function ItemInfo() {
           <EditButton onClick={handleClick}>Delete item</EditButton>
           
           </>
-          ) : null }
-          <ReviewCreate  itemId={id}/>
-          <h2>Current Reviews</h2>
-          <Reviews />
+          ) : <>          
+          <ReviewCreate  itemId={id} />
+          <SubTitleTag>Current Reviews</SubTitleTag>
+          <Reviews /> 
+          </>
+          }
         </InfoSection>
       </ItemSection>
     );
@@ -211,6 +219,11 @@ export default function ItemInfo() {
 }
 
 //Styling
+// const StyledH2 = styled.h2`
+//   color: white; 
+//   font-famil
+// `
+
 const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -249,9 +262,9 @@ const PTag = styled.p`
 `;
 
 const SubTitleTag = styled.p`
-  margin-top: 60px;
+  /* margin-top: 60px; */
   font-size: 30px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   grid-column-start: 2;
   grid-column-end: 4;
   font-weight: bold;

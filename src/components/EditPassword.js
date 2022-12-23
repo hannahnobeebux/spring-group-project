@@ -23,6 +23,8 @@ export default function EditPassword() {
 
     // Do code here to update password
     console.log(data)
+
+    // If it was successful then redirect to /loggedIn page
     if(await fetchEditPassword(data)) navigate('/loggedIn')
   }
 
@@ -32,11 +34,11 @@ export default function EditPassword() {
     <>
       <form onSubmit={ handleSubmit(onSubmit)}>
         <h2>Edit your password here:</h2>
-        <Input {...register("currentPassword")} placeholder="Current Password" />
+        <Input type="password" {...register("currentPassword")} placeholder="Current Password" />
         <p>{errors.currentPassword?.message}</p>
-        <Input {...register("newPassword")} placeholder="New Password" />
+        <Input type="password" {...register("newPassword")} placeholder="New Password" />
         <p>{errors.newPassword?.message}</p>
-        <Submit type="submit" />
+        <Submit  type="submit" />
       </form>
     </>
   );

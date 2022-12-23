@@ -36,6 +36,8 @@ export default function ReviewCreate(props) {
             console.log(itemId)
             await fetchAddReview(itemId, userId, data)
         }
+        window.location.reload()
+        console.log(userId)
         // const results = await fetchGetSearchItems(data.query);
         // if(results?.length > 0) {
         //     setSearchResults(results)
@@ -47,18 +49,30 @@ export default function ReviewCreate(props) {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Write a review</h2>
+                <SubTitleTag>Write a review</SubTitleTag>
                 <Input type="number" min="1" max="5" required="true" {...register("reviewValue")} placeholder="1-5" />
                 <p>{errors.reviewValue?.message}</p>
                 <Input {...register("reviewText")} placeholder="Write your review" />
                 <p>{errors.reviewText?.message}</p>
-                <Submit type="submit" />
+                {/* <Submit type="submit">Submit</Submit> */}
+                <Submit type="submit"/>
+                {/* <SubmitBtn>Submit</SubmitBtn> */}
             </form>
         </div>
     )
 }
 
 // Styling
+const SubTitleTag = styled.p`
+  /* margin-top: 60px; */
+  font-size: 30px;
+  /* margin-bottom: 10px; */
+  grid-column-start: 2;
+  grid-column-end: 4;
+  font-weight: bold;
+  color: white;
+`;
+
 const Input = styled.input`
   width: 20vw;
   height: 2vw;
@@ -78,19 +92,52 @@ const Input = styled.input`
 
 const Submit = styled.input`
 padding: 10px 20px;
-background: #e6e6e6;
+/* background: #e6e6e6; */
 margin: 1vw;
 border-radius: 10px;
 border: 1px solid #ccc;
-color: black;
+/* color: black; */
 font-size: 20px;
 position: relative;
 overflow: hidden;
-transition: all 0.3s ease;
+/* transition: all 0.3s ease; */
+
+color: white;
+background-color: #ffa372;
+transition: background-color 0.2s;
+
+border: none; 
+font-weight: bold;
+
+
 
 &:hover {
-  background: #ccc;
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
-  transform: translateY(-5px);
+  /* background: #ccc; */
+  background-color: #e07426;
+  /* box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px); */
 }
+`;
+
+const SubmitBtn = styled.button`
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
+  position: relative;
+  overflow: hidden; 
+  margin: 15px 0;
+  border-radius: 20px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  width: 8vw;
+  padding: 1vw;
+  color: white;
+  background-color: #ffa372;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #e07426;
+  }
 `;

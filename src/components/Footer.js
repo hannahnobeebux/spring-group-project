@@ -15,7 +15,7 @@ export default function Footer() {
 />
 
       <div className="footer-content">
-        <p>Created by Hannah, Vicky, Tyrese, Michael, Omar.</p>
+        <p>Created by Hannah, Vicky, Tyrese, Michael, Omar, ChatGPT.</p>
         <div className="social-links">
           <a href="https://twitter.com/" target="_blank">
             <i className="fab fa-twitter"></i>

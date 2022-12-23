@@ -4,35 +4,40 @@ import { ReactSVG } from "react-svg";
 import accountIcon from "../images/account.svg";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import checkIfUserIsAuthenticated from "../utils/Users/checkIfUserIsAuthenticated";
 
 // FOR MEDIA QUERIES 
 import { Device } from './Device';
 
 export default function Header() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("")
-  const [basket, setBasket] = useState("")
+  
   async function fetchAuthenticated() {
   const isAuthenticated = await checkIfUserIsAuthenticated();
   
   if (isAuthenticated == null) {
-    setBasket('Login')
+    
     setEmail('Login')
   } else {
     const userData = isAuthenticated;
     setEmail(userData.emailAddress)
-    setBasket('/basket')
+    
   }
 }
 useEffect(() => {
+  if (location.pathname === '/login') {
+    fetchAuthenticated();
+  }
   //location.reload()
   fetchAuthenticated()
     window.addEventListener("storage",(e) => {
       console.log("Storage changed 2")
       fetchAuthenticated()
    });
-}, []);
+}, [location.pathname]);
   return (
     <HeaderContainer>
       <a  href="/"><Img src="https://www.svgrepo.com/show/185961/shopping-basket.svg"></Img></a>
@@ -52,7 +57,7 @@ useEffect(() => {
         </UserDetails>
         <UserBasket>
 
-        <a href={basket}><Trolley src="https://www.svgrepo.com/show/185956/shopping-cart-cart.svg"></Trolley></a>
+       
         </UserBasket>
       </Container>
     </HeaderContainer>
@@ -155,10 +160,5 @@ const Img = styled.img`
   position: relative;
   left: 2vw;
   top: -0.10vw;
-`;
-
-const Trolley = styled.img`
-margin-left: 0px;
-height: 3vw;
 `;
 

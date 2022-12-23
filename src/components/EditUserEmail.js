@@ -43,6 +43,7 @@ export default function EditUserEmail() {
         localStorage.setItem("logged_in", "true")
         return;
       }else {
+        alert('Email is already taken!')
         console.log(await response.json())
       }
     } catch (error) {
@@ -95,9 +96,9 @@ export default function EditUserEmail() {
       <form onSubmit={ handleSubmit(onSubmit)}>
         <h2>Edit your email here:</h2>
         {/* Updating password and email is going to be on a seperate page */}
-        <Input {...register("email")} placeholder="New Email" />
+        <Input type="email" {...register("email")} placeholder="New Email" />
         <p>{errors.email?.message}</p>
-        <Input {...register("password")} placeholder="Password" />
+        <Input type="password" {...register("password")} placeholder="Password" />
         <p>{errors.password?.message}</p>
         <Submit type="submit" />
       </form>

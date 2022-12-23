@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import fetchGetOneUserBasket from "../utils/Users/fetchGetOneUserBasket";
 import fetchResetUserBasket from "../utils/Users/fetchResetUserBasket";
+import fetchReduceItemQuantity from "../utils/Items/fetchReduceItemQuantity";
 import fetchGetOneItem from "../utils/Items/fetchGetOneItem";
 import WishlistItem from "./WishlistItem";
 
 export default function Basket() {
   const [userShopping, setUserShopping] = useState();
+  const [basketItems, setBasketItems] = useState();
   const [isLoading, setIsLoading] = useState(true);
   let userIdTest = localStorage.getItem("user_id")
   userIdTest = parseInt(userIdTest);
@@ -30,6 +32,8 @@ export default function Basket() {
     async function fetchData() {
       const userId = localStorage.getItem('user_id')
       const data = await fetchGetOneUserBasket(userId);
+      setBasketItems(data)
+      console.log(data)
       if(data){
         calculateTotalCost(data);
       } 
@@ -40,8 +44,26 @@ export default function Basket() {
 
 const userBasketreset = async () =>
 {
+  if(basketItems.length === 0 || basketItems === null)
+  {
+    alert('You need to add items before you can buy them')
+  }
+  else{
+    for(let itemId of basketItems)
+    {
+      
+      const item = await fetchGetOneItem(itemId);
+      if(item.quantity <= 0){
+        alert(item.name + " is out of stock :(")
+      }
+      else{
+        await fetchReduceItemQuantity(itemId)
+      }
+      
+    }
     await fetchResetUserBasket(userIdTest)
     window.location.reload(false)
+  }
 }
   if (!isLoading) {
     return (
@@ -85,7 +107,7 @@ border-radius: 10px;
 border: 1px solid #FF7800;
 color: white;
 font-weight: bold;
-font-size: 20px;
+font-size: 1.2vw;
 position: relative;
 overflow: hidden;
 transition: all 0.3s ease;

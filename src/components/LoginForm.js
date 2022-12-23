@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+
 export default function LoginForm() {
   // Create form
   // Make post request to auth server with email and password
@@ -10,6 +11,11 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+
+
+
+
+
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -48,13 +54,15 @@ export default function LoginForm() {
   return (
     <div>
       <h1>Login Form!</h1>
+      <br />
       <Form onSubmit={onFormSubmit}>
-        <label>Email Address</label>
+        <StyledLabel>Email Address: </StyledLabel>
         <Input
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         ></Input>
-        <label>Password</label>
+        <br />
+        <StyledLabel>Password: </StyledLabel>
         <Input
           type="password"
           value={passwordInput}
@@ -62,12 +70,24 @@ export default function LoginForm() {
         ></Input>
         <Submit type="submit">Login</Submit>
       </Form>
-      <a href="/register">Don't have an account, register here!</a>
+      <RegisterLink href="/register">Don't have an account? Register here!</RegisterLink>
 
 </div>
 )
 }
 
+// STYLING
+
+const RegisterLink = styled.a`
+    color: #0000EE; 
+    font-weight: bold; 
+`
+
+const StyledLabel = styled.label`
+  font-weight: bold; 
+  margin-right: 5px; 
+
+`
 const Form = styled.form`
   display: flex:
   flex-direction: column;
