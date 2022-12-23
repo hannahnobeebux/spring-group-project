@@ -27,7 +27,7 @@ export default function Review (props) {
     }, []);
 
     return (<div>
-            <StyledText>{userName.firstName} {userName.lastName}'s Review</StyledText>
+            <StyledText>{userName.firstName} {userName.lastName}'s Review: </StyledText>
             <StyledDescription>Rating: {reviewData.reviewValue}</StyledDescription>
 
             <StyledDescription>{reviewData.reviewText}</StyledDescription>

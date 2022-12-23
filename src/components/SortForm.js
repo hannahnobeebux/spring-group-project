@@ -32,8 +32,8 @@ export default function SortForm (props){
       </div>)
   }
   const Select = styled.select`
-  width: 10vw;
-  height: 2vw;
+  width: 15vw;
+  height: 3vw;
   border-radius: 10px;
   margin-top: 1vw;
   border: 1px solid #ccc;

@@ -39,7 +39,7 @@ export default function SellersItems() {
     return (
       <>
       <Container>
-        <h1>{sellerName.firstName} {sellerName.lastName}'s Items</h1>
+        <SubHeading>{sellerName.firstName} {sellerName.lastName}'s Items</SubHeading>
       </Container>
       <Container>
         {sellersItems.map((item) => {
@@ -53,6 +53,15 @@ export default function SellersItems() {
 }
 
 // Styling
+
+const SubHeading = styled.h1`
+  font-family: "Roboto Condensed";
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  font-size: 40px;
+  text-align: center;
+  `;
 
 const Container = styled.section`
   display: flex;
