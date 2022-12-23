@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 import styled from "styled-components";
 import fetchGetAllItemsByCategory from "../utils/Items/fetchGetAllItemsByCategory";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
@@ -25,6 +27,40 @@ export default function ItemsByCategory() {
   }, [category]);
 
 
+  const SortForm = () => {
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+  } = useForm({
+      defaultValues: {
+      },
+  });
+
+  async function handleSortChange(e) {
+    const sort = e.target.value;
+    console.log(sort)
+    // sortItems(searchResults, sort)
+    // setSortInput(sort)
+  }
+    return (<div>
+      <form>
+        <Select
+          {...register("sort", { required: "This is required" })}
+          placeholder="Sort by" onChange={handleSortChange}
+        >
+          <option value="default">Sort by: Default</option>
+          <option value="az">A ➡️ Z</option>
+          <option value="za">Z ➡️ A</option>
+          <option value="expensive">Most Expensive 🤑</option>
+          <option value="cheap">Cheapest 💸</option>
+          <option value="quantity">Quantity 📦</option>
+        </Select>
+        <p>{errors.sort?.message}</p>
+        <p>{errors.query?.message}</p>
+      </form>
+      </div>)
+  }
   const WishlistIcon = ({ item }) => {
     const [lightMode, setLightMode] = useState(wishlist.includes(item.id));
     if(userId === null)
@@ -52,6 +88,8 @@ export default function ItemsByCategory() {
 
   if (!isLoading) {
     return (
+      <div>
+        {/* <SortForm /> */}
       <Container>
         {items.map((item) => (
           <Section key={item.id}>
@@ -70,6 +108,7 @@ export default function ItemsByCategory() {
           </Section>
         ))}
       </Container>
+      </div>
     );
   }
 }
@@ -165,3 +204,20 @@ const Wishlist = styled.button`
   }
 `;
 
+const Select = styled.select`
+  width: 10vw;
+  height: 2vw;
+  border-radius: 10px;
+  margin-top: 1vw;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 3px;
+  transition: all 0.3s ease;
+
+  margin: 25px;
+
+  &:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+`;
