@@ -159,10 +159,6 @@ export default function ItemInfo() {
             Description: <br></br>
             {item.description}
           </PTag>
-
-            
-
-
           {userId !== userItem ? (
             <>
             <ShoppingIcon item={item} />
@@ -174,6 +170,7 @@ export default function ItemInfo() {
             >
               Seller: {creator.firstName} {creator.lastName}
             </Link>
+            <ReviewCreate  itemId={id} />
             </>
           ) : (
             <Link
@@ -205,7 +202,7 @@ export default function ItemInfo() {
           
           </>
           ) : <>          
-          <ReviewCreate  itemId={id} />
+          
           <SubTitleTag>Current Reviews</SubTitleTag>
           <Reviews /> 
           </>
@@ -235,12 +232,42 @@ const InfoSection = styled.section`
   padding: 1vw;
   margin-right: 5vw;
   text-align: center;
+
+  @media(max-width:480px) {
+   width: 80vw;
+   margin-right: 0;
+  }
+
+  @media (min-width: 481px) and (max-width:1000px){
+    width: 80vw;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999px){
+   
+  }
 `;
 
 const ItemSection = styled.section`
   display: grid;
   grid-template-rows: repeat(5, 0.1fr);
   grid-template-columns: 1fr 1fr 1fr;
+
+  @media(max-width:480px) {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+  }
+
+  @media (min-width: 481px) and (max-width:1000px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 1000px) and (max-width: 1999px){
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const SubHeading = styled.h3`
@@ -251,6 +278,18 @@ const SubHeading = styled.h3`
   grid-column-start: 2;
   font-size: 40px;
   text-align: center;
+
+  @media(max-width:480px) {
+    font-size: 8vw;
+  }
+
+  @media (min-width: 481px) and (max-width:1000px){
+    // font-size: 8vw;
+  }
+
+  // @media (min-width: 1025px) and (max-width: 1999px){
+   
+  // }
 `;
 
 const PTag = styled.p`
@@ -259,6 +298,18 @@ const PTag = styled.p`
   color: white;
   font-family: "Roboto Condensed";
   font-size: 1vw;
+
+  @media(max-width:480px) {
+  font-size: 4vw;
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+ 
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999px){
+    
+  }
 `;
 
 const SubTitleTag = styled.p`
@@ -269,6 +320,18 @@ const SubTitleTag = styled.p`
   grid-column-end: 4;
   font-weight: bold;
   color: white;
+
+  @media(max-width:480px) {
+  font-size: 6vw;
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+ 
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999px){
+    
+  }
 `;
 
 const Image = styled.img`
@@ -280,6 +343,19 @@ const Image = styled.img`
   /* height: 20vw; */
   margin-left: 2vw;
   align-self: left;
+
+  @media(max-width:480px) {
+   width: 30vw;
+   margin-bottom: 3vw;
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+ 
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999px){
+    
+  }
 `;
 
 const EditButton = styled.button`
@@ -300,9 +376,22 @@ const EditButton = styled.button`
   &:hover {
     background-color: #e07426;
   }
+  
 `;
 
 
 const Img = styled.img`
 height: 3vw;
+
+@media(max-width:480px) {
+  height: 5vw;
+}
+
+@media (min-width: 481px) and (max-width:1024px){
+
+}
+
+@media (min-width: 1025px) and (max-width: 1999px){
+  
+}
 `;

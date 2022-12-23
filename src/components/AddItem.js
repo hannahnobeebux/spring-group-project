@@ -41,12 +41,12 @@ export default function AddItem() {
           placeholder="Description"
         />
         <p>{errors.description?.message}</p>
-        <label>Category</label>
-        <br></br>
+        
         <Select
           {...register("category", { required: "This is required" })}
           placeholder="Category"
         >
+          <option value="" disabled>Category</option>
           <option value="Baby">Baby</option>
           <option value="Books">Books</option>
           <option value="Fashion">Fashion</option>

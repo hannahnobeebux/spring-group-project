@@ -64,7 +64,9 @@ export default function LoggedInUser() {
   );
 }
 
-//Styl
+//Styling 
+
+
 const Section = styled.section`
   display: flex;
   flex-direction: column;

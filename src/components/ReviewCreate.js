@@ -71,6 +71,18 @@ const SubTitleTag = styled.p`
   grid-column-end: 4;
   font-weight: bold;
   color: white;
+
+  @media(max-width:480px) {
+    font-size: 6vw;
+    }
+  
+    @media (min-width: 481px) and (max-width:1024px){
+   
+    }
+  
+    @media (min-width: 1025px) and (max-width: 1999px){
+      
+    }
 `;
 
 const Input = styled.input`
@@ -87,6 +99,19 @@ const Input = styled.input`
     outline: none;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   }
+
+  @media(max-width:480px) {
+    width: 50vw;
+    height: 6vw;
+    }
+  
+    @media (min-width: 481px) and (max-width:1024px){
+   
+    }
+  
+    @media (min-width: 1025px) and (max-width: 1999px){
+      
+    }
 `;
 
 

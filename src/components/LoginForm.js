@@ -57,17 +57,20 @@ export default function LoginForm() {
       <br />
       <Form onSubmit={onFormSubmit}>
         <StyledLabel>Email Address: </StyledLabel>
+        <br />
         <Input
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         ></Input>
         <br />
         <StyledLabel>Password: </StyledLabel>
+        <br />
         <Input
           type="password"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         ></Input>
+        <br />
         <Submit type="submit">Login</Submit>
       </Form>
       <RegisterLink href="/register">Don't have an account? Register here!</RegisterLink>
@@ -77,6 +80,8 @@ export default function LoginForm() {
 }
 
 // STYLING
+
+
 
 const RegisterLink = styled.a`
     color: #0000EE; 
@@ -107,6 +112,19 @@ const Input = styled.input`
     outline: none;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   }
+
+  @media(max-width:480px) {
+    height: 5vw;
+    width: 50vw;
+   }
+ 
+   @media (min-width: 481px) and (max-width:1024px){
+  
+   }
+ 
+   @media (min-width: 1025px) and (max-width: 1999px){
+    
+   }
 `;
 
 const Submit = styled.button`

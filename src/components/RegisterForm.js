@@ -50,41 +50,56 @@ export default function RegisterForm() {
       <h1>Register Form!</h1>
       <form onSubmit={onFormSubmit}>
         
-      <p>First Name</p>
+      <StyledLabel>First Name: </StyledLabel>
+      <br />
         <Input
         type="text"
         required={true}
           value={firstNameInput}
           onChange={(e) => setFirstNameInput(e.target.value)}
         ></Input>
-        <p>Last Name</p>
+        <br />
+        <StyledLabel>Last Name: </StyledLabel>
+        <br />
         <Input
         type="text"
         required={true}
           value={lastNameInput}
           onChange={(e) => setLastNameInput(e.target.value)}
         ></Input>
-        <p>Email Address</p>
+        <br />
+        <StyledLabel>Email Address: </StyledLabel>
+        <br />
         <Input
         type="email"
         required={true}
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         ></Input>
-        <p>Password</p>
+        <br />
+        <StyledLabel>Password: </StyledLabel>
+        <br />
         <Input
           type="password"
         required={true}
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         ></Input>
-        
+        <br />
         <Submit type="submit">Register</Submit>
       </form>
       <RegisterLink href="/login">Have an account? Log in here!</RegisterLink>
 </div>
 )
 }
+
+// styling 
+
+const StyledLabel = styled.label`
+  font-weight: bold; 
+  margin-right: 5px; 
+
+`
 
 const Input = styled.input`
   width: 20vw;
@@ -99,6 +114,19 @@ const Input = styled.input`
     border-color: #333;
     outline: none;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  @media(max-width:480px) {
+   height: 5vw;
+   width: 50vw;
+  }
+
+  @media (min-width: 481px) and (max-width:1024px){
+ 
+  }
+
+  @media (min-width: 1025px) and (max-width: 1999px){
+   
   }
 `;
 
