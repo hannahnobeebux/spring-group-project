@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+
 import styled from "styled-components";
 import fetchGetAllItemsByCategory from "../utils/Items/fetchGetAllItemsByCategory";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
 import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
+import SortForm from "../components/SortForm";
 
 export default function ItemsByCategory() {
   const [items, setItems] = useState();
+  const [sorted, setSorted] = useState();
   const [wishlist, setWishlist] = useState()
   const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams();
@@ -21,46 +24,14 @@ export default function ItemsByCategory() {
       const wishList = userId ? (await fetchGetOneUserWishlist(userId)) : [] 
       setWishlist(wishList);
       setItems(data);
+      setSorted(data);
       setIsLoading(false);
     }
     fetchItemsByCategory();
   }, [category]);
 
 
-  const SortForm = () => {
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-  } = useForm({
-      defaultValues: {
-      },
-  });
 
-  async function handleSortChange(e) {
-    const sort = e.target.value;
-    console.log(sort)
-    // sortItems(searchResults, sort)
-    // setSortInput(sort)
-  }
-    return (<div>
-      <form>
-        <Select
-          {...register("sort", { required: "This is required" })}
-          placeholder="Sort by" onChange={handleSortChange}
-        >
-          <option value="default">Sort by: Default</option>
-          <option value="az">A ➡️ Z</option>
-          <option value="za">Z ➡️ A</option>
-          <option value="expensive">Most Expensive 🤑</option>
-          <option value="cheap">Cheapest 💸</option>
-          <option value="quantity">Quantity 📦</option>
-        </Select>
-        <p>{errors.sort?.message}</p>
-        <p>{errors.query?.message}</p>
-      </form>
-      </div>)
-  }
   const WishlistIcon = ({ item }) => {
     const [lightMode, setLightMode] = useState(wishlist.includes(item.id));
     if(userId === null)
@@ -85,13 +56,67 @@ export default function ItemsByCategory() {
       }
   };
 
+  async function sortItems(items, sortOption) {
+    // console.log(items)
+    console.log(sortOption)
+    
+    const sortedItems = [...items].sort((a, b) => {
+      switch (sortOption) {
+        // name low to high
+        case "az":
+          return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
+
+          
+          
+          break;
+        // Name high to low
+        case "za":
+          return a.name.toUpperCase() <  b.name.toUpperCase() ? 1 : -1;
+          break;
+        // Price high to low
+        case "expensive":
+          return b.price - a.price
+          break;
+        // Price low to high
+        case "cheap":
+          return a.price - b.price
+          
+          break;
+        
+        // Stock high to low
+        case "quantity":
+            return b.quantity - a.quantity
+          break;
+      
+        // Nothing
+        default:
+          return;
+          break;
+      }
+    })
+    // console.log(sortedItems.length)
+    // console.log(sortedItems)
+    // return sortedItems;
+    setSorted(sortedItems);
+}
+
+  async function handleSortChange(e) {
+    const sort = e.target.value;
+    console.log(sort)
+    sortItems(items, sort)
+    // alert(sort)
+
+
+    // sortItems(searchResults, sort)
+    // setSortInput(sort)
+  }
 
   if (!isLoading) {
     return (
       <div>
-        {/* <SortForm /> */}
+        <SortForm onChange={handleSortChange} />
       <Container>
-        {items.map((item) => (
+        {sorted.length > 0 ? sorted.map((item) => (
           <Section key={item.id}>
             <Link to={`/itemInfo/${item.id}`}>
               <SubHeading id={"item-title"}>
@@ -106,7 +131,7 @@ export default function ItemsByCategory() {
               </Wishlist>
             </Bottom>
           </Section>
-        ))}
+        )): null}
       </Container>
       </div>
     );

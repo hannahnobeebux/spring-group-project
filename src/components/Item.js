@@ -4,11 +4,13 @@ import styled from "styled-components";
 import fetchGetOneUserWishlist from "../utils/Users/fetchGetOneUserWishlist";
 import fetchGetAllItems from "../utils/Items/fetchGetAllItems";
 import fetchEditOneWishlist from "../utils/Users/fetchEditOneWishlist";
+import SortForm from "../components/SortForm";
 
 export default function Item() {
   const [items, setItems] = useState();
   const [wishlist, setWishlist] = useState()
   const [isLoading, setIsLoading] = useState(true);
+  const [sorted, setSorted] = useState([])
   let checked = false;
   const userId = localStorage.getItem('user_id')
 
@@ -23,6 +25,61 @@ export default function Item() {
 
     fetchAllItems();
   }, []);
+
+  async function sortItems(items, sortOption) {
+    // console.log(items)
+    console.log(sortOption)
+    
+    const sortedItems = [...items].sort((a, b) => {
+      switch (sortOption) {
+        // name low to high
+        case "az":
+          return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
+
+          
+          
+          break;
+        // Name high to low
+        case "za":
+          return a.name.toUpperCase() <  b.name.toUpperCase() ? 1 : -1;
+          break;
+        // Price high to low
+        case "expensive":
+          return b.price - a.price
+          break;
+        // Price low to high
+        case "cheap":
+          return a.price - b.price
+          
+          break;
+        
+        // Stock high to low
+        case "quantity":
+            return b.quantity - a.quantity
+          break;
+      
+        // Nothing
+        default:
+          return;
+          break;
+      }
+    })
+    // console.log(sortedItems.length)
+    // console.log(sortedItems)
+    // return sortedItems;
+    setSorted(sortedItems);
+}
+
+  async function handleSortChange(e) {
+    const sort = e.target.value;
+    console.log(sort)
+    sortItems(items, sort)
+    // alert(sort)
+
+
+    // sortItems(searchResults, sort)
+    // setSortInput(sort)
+  }
 
   const WishlistIcon = ({ item }) => {
     const [lightMode, setLightMode] = useState(wishlist.includes(item.id));
@@ -50,7 +107,9 @@ export default function Item() {
 
   // When the title on the individual item is clicked, will show the information for that item on another route -> http://localhost3000/itemInfo
   if (!isLoading) {
-    return items.map((item) => (
+    return(items.map((item) => (
+      <div>
+        <SortForm onChange={handleSortChange} />
       <Section id={"itemSection"} key={item.id}>
         <Link to={`/itemInfo/${item.id}`}>
           <Content>
@@ -69,7 +128,9 @@ export default function Item() {
           </Wishlist>
         </Bottom>
       </Section>
+      </div>
     ));
+    )
   }
 }
 
