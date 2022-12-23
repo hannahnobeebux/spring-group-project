@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 async function fetchUser(reviewId){
     const data = await fetchGetOneUserByReview(reviewId)
-     return data
+    const response = await fetch(`http://localhost:8080/shop/user/${data}`)
+     return response
   }
 
 
