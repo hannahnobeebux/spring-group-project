@@ -311,7 +311,7 @@ const PTag = styled.p`
 
 const SubTitleTag = styled.p`
   /* margin-top: 60px; */
-  font-size: 30px;
+  font-size: 1.5vw;
   /* margin-bottom: 10px; */
   grid-column-start: 2;
   grid-column-end: 4;

@@ -48,7 +48,7 @@ const StyledDiv = styled.div`
 `
 
 const StyledText = styled.p`
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     /* color: white; */
     /* font-style: italic;  */
     font-weight: bold;
