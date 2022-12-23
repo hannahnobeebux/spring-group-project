@@ -126,7 +126,7 @@ export default function ItemInfo() {
     } else{
     return (
       <section id="reviews">
-        {reviews.map(review => {
+        {reviews.map((review) => {
           return (<Review reviewData={review} />)
         })}
       </section>
