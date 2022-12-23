@@ -50,7 +50,7 @@ export default function ReviewCreate(props) {
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <SubTitleTag>Write a review</SubTitleTag>
-                <Input type="number" min="1" max="5" required="true" {...register("reviewValue")} placeholder="1-5" />
+                <Input type="number" min="1" max="5" required={true} {...register("reviewValue")} placeholder="1-5" />
                 <p>{errors.reviewValue?.message}</p>
                 <Input {...register("reviewText")} placeholder="Write your review" />
                 <p>{errors.reviewText?.message}</p>

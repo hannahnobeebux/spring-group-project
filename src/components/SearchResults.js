@@ -100,7 +100,7 @@ export default function SearchResults() {
   return (
     <div>
       <form onSubmit={ handleSubmit(onSubmit)}>
-        <h2>Search {queryInput}</h2>
+        <SubHeading>Search {queryInput}</SubHeading>
         <Input {...register("query")} placeholder="Search for an item.." onChange={handleChange}/>
         <Select
           {...register("sort", { required: "This is required" })}
@@ -130,6 +130,15 @@ export default function SearchResults() {
 }
 
 // Styling
+
+const SubHeading = styled.h2`
+  font-family: "Roboto Condensed";
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  font-size: 40px;
+  text-align: center;
+  `;
 
 const Input = styled.input`
   width: 20vw;

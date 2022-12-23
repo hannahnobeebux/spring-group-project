@@ -47,7 +47,7 @@ export default function RegisterForm() {
   }
   return (
     <div>
-      <h1>Register Form!</h1>
+      <SubHeading>Register Form!</SubHeading>
       <form onSubmit={onFormSubmit}>
         
       <StyledLabel>First Name: </StyledLabel>
@@ -94,6 +94,15 @@ export default function RegisterForm() {
 }
 
 // styling 
+
+const SubHeading = styled.h1`
+  font-family: "Roboto Condensed";
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  font-size: 40px;
+  text-align: center;
+  `;
 
 const StyledLabel = styled.label`
   font-weight: bold; 

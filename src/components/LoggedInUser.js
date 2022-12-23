@@ -58,7 +58,7 @@ export default function LoggedInUser() {
       <Submit onClick={editDetails}>Edit details</Submit>
       <Submit onClick={editEmail}>Edit email</Submit>
       <Submit onClick={editPassword}>Edit password</Submit>
-      <Submit onClick={logout}>Log out</Submit>
+      <Submit onClick={logout}>Log<br></br>out</Submit>
       </div>
     </Section>
   );

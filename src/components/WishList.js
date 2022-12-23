@@ -21,7 +21,7 @@ export default function WishList() {
   if (!isLoading) {
     return (
       <Container>
-        <h1>My Wishlist</h1>
+        <SubHeading>My Wishlist</SubHeading>
         <Section>
           {userWishlist?.map((item) => (
             <WishlistItem Item={item} />
@@ -33,6 +33,15 @@ export default function WishList() {
 }
 
 // Styling
+
+const SubHeading = styled.h1`
+  font-family: "Roboto Condensed";
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  font-size: 40px;
+  text-align: center;
+  `;
 
 const Container = styled.section`
   display: flex;

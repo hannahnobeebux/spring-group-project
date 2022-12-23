@@ -53,7 +53,7 @@ export default function LoginForm() {
   }
   return (
     <div>
-      <h1>Login Form!</h1>
+      <SubHeading>Login Form!</SubHeading>
       <br />
       <Form onSubmit={onFormSubmit}>
         <StyledLabel>Email Address: </StyledLabel>
@@ -80,7 +80,14 @@ export default function LoginForm() {
 }
 
 // STYLING
-
+const SubHeading = styled.h1`
+  font-family: "Roboto Condensed";
+  color: #024249;
+  font-weight: bold;
+  grid-column-start: 2;
+  font-size: 40px;
+  text-align: center;
+  `;
 
 
 const RegisterLink = styled.a`
